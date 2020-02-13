@@ -1,0 +1,136 @@
+{
+    "$schema": "https://raw.githubusercontent.com/F5Networks/f5-declarative-onboarding/master/schema/latest/base.schema.json",
+    "schemaVersion": "1.5.0",
+    "class": "Device",
+    "async": true,
+    "label": "BIG-IP STIG Hardening Declarative Onboarding",
+    "Common": {
+        "class": "Tenant",
+        "hostname": "f5vm0.eastus.cloudapp.azure.com",
+        "gui-security-banner": "enabled",
+        "gui-security-banner-text": "You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. By using this IS (which includes any device attached to this IS), you consent to the following conditions: The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations. At any time, the USG may inspect and seize data stored on this IS. Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG authorized purpose. This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy. Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.",
+        "dbvars": {
+        	"class": "DbVariables",
+        	"ui.advisory.enabled": true,
+        	"ui.advisory.color": "green",
+            "ui.advisory.text": "//UNCLASSIFIED//",
+            "ui.system.preferences.advancedselection":  "advanced",
+            "ui.system.preferences.recordsperscreen": "100",
+            "ui.system.preferences.startscreen": "network_map",
+            "ui.users.redirectsuperuserstoauthsummary": "true",
+            "dns.cache": "enable"
+        },
+        "myLicense": {
+            "class": "License",
+            "licenseType": "regKey",
+            "regKey": "xxxx-xxxx-xxxx-xxxx-xxxxx"
+        },
+        "myDns": {
+            "class": "DNS",
+            "nameServers": ["8.8.8.8","8.8.8.8"],
+            "search": ["example.com"]
+        },
+        "myNtp": {
+            "class": "NTP",
+            "servers": ["0.pool.ntp.org","1.pool.ntp.org"],
+            "timezone": "UTC"
+        },
+        "myProvisioning": {
+        	"class": "Provision",
+        	"avr": "none",
+            "ltm": "nominal",
+            "asm": "nominal",
+            "apm": "nominal",
+            "afm": "nominal",
+            "ilx": "nominal"
+        },
+        "external": {
+            "class": "VLAN",
+            "tag": 4094,
+            "mtu": 1500,
+            "interfaces": [
+                {
+                    "name": "1.1",
+                    "tagged": false
+                }
+            ]
+        },
+        "internal": {
+            "class": "VLAN",
+            "tag": 4093,
+            "mtu": 1500,
+            "interfaces": [
+                {
+                    "name": "1.2",
+                    "tagged": false
+                }
+            ]
+        },
+        "external-self":{
+            "class": "SelfIp",
+            "address": "192.168.2.4/24",
+            "vlan": "external",
+            "allowService": "none",
+            "trafficGroup": "traffic-group-local-only"
+        },
+        "internal-self": {
+            "class": "SelfIp",
+            "address": "192.168.3.4/24",
+            "vlan": "internal",
+            "allowService": "none",
+            "trafficGroup": "traffic-group-local-only"
+        },
+        "default_gw":{
+            "class": "Route",
+            "gw": "192.168.3.1",
+            "network": "default",
+            "mtu": 1500
+        },
+        "configsync": {
+            "class": "ConfigSync",
+            "configsyncIp": "/Common/internal-self/address"
+        },
+        "failoverAddress": {
+            "class": "FailoverUnicast",
+            "address": "/Common/internal-self/address"
+        },
+        "failoverGroup": {
+            "class": "DeviceGroup",
+            "type": "sync-failover",
+            "members": [
+                "f5vm0.eastus.cloudapp.azure.com","f5vm1.eastus.cloudapp.azure.com"
+            ],
+            "owner": "/Common/failoverGroup/members/0",
+            "autoSync": true,
+            "saveOnAutoSync": true,
+            "networkFailover": true,
+            "fullLoadOnSync": false,
+            "asmSync": false
+        },
+        "trust": {
+            "class": "DeviceTrust",
+            "localUsername": "xadmin",
+            "localPassword": "admin",
+            "remoteHost": "192.168.1.9",
+            "remoteUsername": "xadmin",
+            "remotePassword": "admin"
+        },
+        "xadmin": {
+            "class":"User",
+            "userType":"root",
+            "newPassword": "1234",
+            "oldPassword": "1234",
+            "keys": [
+            	"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCwHJLJY+/U/ioAAAADAQABAAACAQCwHJLJY+z0Rb85in7Ean6JS2J9dzo1nSssm7ZyQvGgc1e7EVtztbVpHThsvw92+1hx9wlSogXN6Co5zrtqlN8/mvlQkRRQ+sp2To8PcSMeEVI+TqBOg6BWbwwNQLz9/eUJq2o4vBfSpsn7GSDIf6C3F9EahRPGCR/z0kw5GZob3Q== test2",
+            	"ssh-rsa AAAAB3NzaC1yc2EAu2Gr14xRiVLnG8KxNp2fO1/U/ioAz0Rb85in7Ean6JS2J9dzo1nSssm7ZyQvGgc1e7EVtztbVpHThsvw92+/mvlQkRRQ+sp2To8PcSMeEVI+TqBOg6BWbwwNQLzu2Gr14xRiVLnG8KxNp2fO19/eUJq2o4vBfSpsn7GSDIf6C3F9EahRPGCR/z0kw5GZob3Q== test"
+            ]
+
+        },
+        "svc_user": {
+            "class": "User",
+            "userType": "regular",
+            "shell": "bash",
+            "password": "1234"
+        }
+    }
+}
