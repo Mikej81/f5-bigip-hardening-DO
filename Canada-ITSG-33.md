@@ -3,10 +3,15 @@ Annex 3A - Security Control Catalogue (ITSG-33)
 ( https://cyber.gc.ca/en/guidance/annex-3a-security-control-catalogue-itsg-33, equivalent to NIST: https://nvd.nist.gov/800-53 )
 
 ## 3.1 FAMILY: ACCESS CONTROL
+### AC-1 - Access Control Policy and Procedures
+This control would be implemented outside of BIG-IP.
+
 ### AC-2 ACCOUNT MANAGEMENT
+The lifecycle of user accounts and roles associated with them is the focus of this control. This F5 solution enables configuration of authentication sources (local, LDAP, RADIUS, etc.) as well as inactivity timeout and remote role assignment in support of this control.
+
 #### AC-2(1) ACCOUNT MANAGEMENT | AUTOMATED SYSTEM ACCOUNT MANAGEMENT
 This F5 solution employs automated mechanisms to support the management of information system accounts.
-Authentication and authorization of all information system accounts is done via their directory service, including accounts used to access the individual infrastructure components of the solution such as the F5 appliances, the servers and the firewalls, as well as for access to the applications serviced and contained within this infrastructure.
+Authentication and authorization of all information system accounts is done via the organization's directory service, including accounts used to access the individual infrastructure components of the solution such as the F5 appliances, the servers and the firewalls, as well as for access to the applications serviced and contained within this infrastructure.
 When users are terminated or transferred, the F5 solution automatically and immediately reflects the change in authorization for the corresponding accounts and enforces the corresponding actions (authorize or deny access).
 The F5 solution captures audit and logging reports detailing the account usage.
 
@@ -18,8 +23,7 @@ This F5 solution automatically disables inactive accounts after the defined time
 This is accomplished by leveraging the directory service attributes that identify the last successful login of each account and by programing the desired logic in the F5 Visual Policy Editor to automatically deny access to an account that has been inactive for longer than the defined time period after the account has been successfully authorized, and this is enforced for access to the individual infrastructure components of the solution such as the F5 appliances, the servers and the firewalls, as well as for access to the applications serviced and contained within this infrastructure.
 
 #### AC-2(5) ACCOUNT MANAGEMENT | INACTIVITY LOGOUT
-This F5 solution automatically logs out users when the defined time-period of inactivity has elapsed.
-This is accomplished by configuration of the "Inactivity Timeout" setting in the Access policy and is enforced for access to the individual infrastructure components of the solution such as the F5 appliances, the servers and the firewalls, as well as for access to the applications serviced and contained within this infrastructure.
+This F5 solution automatically logs out users when the defined time-period of inactivity has elapsed and different time-period values can be be specified for connections to the BIG-IP system's management services: web-based Configuration utility, SSH connections, Console and TMSH. For other individual infrastructure components such as the servers and firewalls, as well as for access to the appications services and contained within this infrastructure, this is accomplished by configuration of the "Inactivity Timeout" setting in the Access policy.
 
 #### AC-2(6) ACCOUNT MANAGEMENT | DYNAMIC PRIVILEGE MANAGEMENT
 This F5 solution automatically, dynamically and immediately enforces access controls continuously over the entire duration of a user's authorized session. This is also commonly referred to as the "Zero Trust" access model. The solution also enforces "step-up authentication" to dynamically adjust the privileges of users based on any number of parameters, including time of day, sub-systems they are attempting to access, or changes in their device's posture, such as disabling their client anti-virus software or becoming infected with malware, and allows for the encryption of the communications to be changed, including changing the encryption keys and requesting client-provided certificate authentication, also referred to as "mutual authentication". This is accomplished with the configuration of the corresponding logic in the F5 access policy definition and is enforced for access to the individual infrastructure components of the solution such as the F5 appliances, the servers and the firewalls, as well as for access to the applications serviced and contained within this infrastructure.
@@ -43,6 +47,8 @@ This F5 solution monitors and reports information system accounts for atypical u
 This F5 solution disables access for accounts immediately upon the organization identifying in their directory service that the corresponding user poses a significant risk. This is accomplished with the configuration of the corresponding logic in the F5 access policy definition and is enforced for access to the individual infrastructure components of the solution such as the F5 appliances, the servers and the firewalls, as well as for access to the applications serviced and contained within this infrastructure.
 
 ### AC-3 ACCESS ENFORCEMENT
+Access to the BIG-IP must be made through approved means. Related to AC-2, remote authentication and role determination help satisfy this control.
+
 #### AC-3(2) ACCESS ENFORCEMENT | DUAL AUTHORIZATION
 This F5 solution enforces dual authorization, also known as two-person control, for organization-defined privileged commands and/or actions. This is accomplished with the configuration of the corresponding logic in the F5 access policy definition, including notification of request for authorization to the two persons, and is enforced for access to the individual infrastructure components of the solution such as the F5 appliances, the servers and the firewalls, as well as for access to the applications serviced and contained within this infrastructure.
 
@@ -86,6 +92,8 @@ This F5 solution enforces the revocation of access authorizations resulting from
 This F5 solution automatically and continuously logs and provides audit reports when automated access control mechanisms are overridden under organization-defined conditions. This is accomplished with the configuration of the corresponding logic in the F5 access policy definition and is enforced for access to the individual infrastructure components of the solution such as the F5 appliances, the servers and the firewalls, as well as for access to the applications serviced and contained within this infrastructure.
 
 ### AC-4 INFORMATION FLOW ENFORCEMENT
+This control addresses information flow within and between systems. The iApp supports this control mainly by enforcing boundary protections; see SC-7.
+
 #### AC-4(1) INFORMATION FLOW ENFORCEMENT | OBJECT SECURITY ATTRIBUTES
 This F5 solution uses organization-defined security attributes associated with organization-defined information, source, and destination objects, as defined in their directory service and in the F5 Access policy definition, to enforce organization-defined information flow control policies. This is accomplished with the configuration of the corresponding logic in the F5 access policy definition and is enforced for access to the individual infrastructure components of the solution such as the F5 appliances, the servers and the firewalls, as well as for access to the applications serviced and contained within this infrastructure.
 
@@ -126,18 +134,39 @@ Enhancement Supplemental Guidance: Policy enforcement mechanisms apply filtering
 
 
 ### AC-5 SEPARATION OF DUTIES
+Encourages use of role-based access control (RBAC). BIG-IP supports a variety of different security roles. Users may be assigned roles on the BIG-IP or by reference to a central authority (for example, mapping via an LDAP attribute).
+
 ### AC-6 LEAST PRIVILEGE
+This F5 solution supports this control using role-based access control, Administrative Partitions, and auditing.
 This F5 solution enables an external directory service to authenticate BIG-IP management users. The directory service may also store RBAC roles for users. (Even when you enable an external directory service, the BIG-IP system continues to support local user accounts.)
 The default role for users not assigned a specific role by the remote directory service is "No Access" and as a result will be forbiden access even if succesfully authenticated.
 Users do not have access to he TMSH (CLI) console by default.
 
 ### AC-7 UNSUCCESSFUL LOGIN ATTEMPTS
+To protect account credentials against brute-force attacks you should lock accounts after a certain number of unsuccessful login attempts. 
+If the organization opts not to leveraged their external directory server to, this F5 solution provides the ability to disable a local user account after some number of failed login attempt.
+
 ### AC-8 SYSTEM USE NOTIFICATION
+You should warn users about policies governing their access to the system.
+This F5 solution provides the ability to alter the banner messages which appear to users of the management web GUI or the BIG-IP command line.
+
 ### AC-9 PREVIOUS LOGON (ACCESS) NOTIFICATION
+Upon logon, users should be notified of their last successful logon time plus additional logon history. 
+This F5 solution displays the last logon time to SSH and console users. Additional logon history information is available via TMSH and shell.
+
 ### AC-10 CONCURRENT SESSION CONTROL
+Limit the number of concurrent sessions by user or account type.
+This F5 solution provides the ability to limit the number of concurrent users of the management web GUI and also for access to the other individual infrastructure components of the solution such as the servers and the firewalls, as well as for access to the applications serviced and contained within this infrastructure.
+
 ### AC-11 SESSION LOCK
+Session locking differs from automatic logout due to idleness because the user's session state is maintained. BIG-IP does not have this feature. A screen- or client-locking feature on the user's workstation could help meet this control.
+
 ### AC-12 SESSION TERMINATION
+This F5 solution automatically displays a suitable message and terminates the network connection associated with a communications session at the end of the session or logs out users when the defined time-period of inactivity has elapsed and different time-period values can be be specified for connections to the BIG-IP system's management services: web-based Configuration utility, SSH connections, Console and TMSH. For other individual infrastructure components such as the servers and firewalls, as well as for access to the appications services and contained within this infrastructure, this is accomplished by configuration of the "Inactivity Timeout" setting in the Access policy.
+
 ### AC-13 SUPERVISION AND REVIEW — ACCESS CONTROL
+This control appeared in earlier revisions of ITSG-33, but has been withdrawn.
+
 ### AC-14 PERMITTED ACTIONS WITHOUT IDENTIFICATION OR AUTHENTICATION
 ### AC-15 AUTOMATED MARKING
 ### AC-16 SECURITY ATTRIBUTES
@@ -161,16 +190,25 @@ Users do not have access to he TMSH (CLI) console by default.
 ## 3.3 FAMILY: AUDIT AND ACCOUNTABILITY
 ### AU-1 AUDIT AND ACCOUNTABILITY POLICY AND PROCEDURES
 ### AU-2 AUDITABLE EVENTS
+This F5 solution provides the ability to configure audit logging of management actions. Typically you enable TMSH and MCP audit logs. Only if you do not have a syslog server to accept log messages (see Syslog Configuration — AU-8, AU-9(2), AU-12(2) on page 16) should you consider disabling logs to save BIG-IP disk space.
+
 ### AU-3 CONTENT OF AUDIT RECORDS
 ### AU-4 AUDIT STORAGE CAPACITY
 ### AU-5 RESPONSE TO AUDIT PROCESSING FAILURES
 ### AU-6 AUDIT REVIEW, ANALYSIS, AND REPORTING
 ### AU-7 AUDIT REDUCTION AND REPORT GENERATION
 ### AU-8 TIME STAMPS
+This F5 solution provides the ability to specify the IP addresses of your primary and (if available) alternate NTP servers. A working NTP configuration is vital to BIG-IP management (and application) security.
+This F5 solution provides the ability to enable the use of ISO-format dates in log messages (generally required for SP-800-53r4 compliance). You may also add syslog servers to receive log messages.
+
 ### AU-9 PROTECTION OF AUDIT INFORMATION
+This F5 solution provides the ability to enable the use of ISO-format dates in log messages (generally required for SP-800-53r4 compliance). You may also add syslog servers to receive log messages.
+
 ### AU-10 NON-REPUDIATION
 ### AU-11 AUDIT RECORD RETENTION
 ### AU-12 AUDIT GENERATION
+This F5 solution provides the ability to enable the use of ISO-format dates in log messages (generally required for SP-800-53r4 compliance). You may also add syslog servers to receive log messages.
+
 ### AU-13 MONITORING FOR INFORMATION DISCLOSURE
 ### AU-14 SESSION AUDIT
 ### AU-15 ALTERNATE AUDIT CAPABILITY
@@ -194,6 +232,7 @@ Users do not have access to he TMSH (CLI) console by default.
 ### CM-4 SECURITY IMPACT ANALYSIS
 ### CM-5 ACCESS RESTRICTIONS FOR CHANGE
 This F5 solution enforces a role-based access control policy over defined subjects and objects and controls access based up organization-defined roles and users authorized to assume such roles, as defined in the organization's directory service. This is accomplished with the configuration of the corresponding logic in the F5 access policy definition and is enforced for access to the individual infrastructure components of the solution such as the F5 appliances, the servers and the firewalls, as well as for access to the applications serviced and contained within this infrastructure.
+This F5 solution provides the ability to configure audit logging of management actions. Typically you enable TMSH and MCP audit logs. Only if you do not have a syslog server to accept log messages (see Syslog Configuration — AU-8, AU-9(2), AU-12(2) on page 16) should you consider disabling logs to save BIG-IP disk space.
 
 ### CM-6 CONFIGURATION SETTINGS
 ### CM-7 LEAST FUNCTIONALITY
@@ -452,9 +491,127 @@ Users do not have access to he TMSH (CLI) console by default.
 ### SC-5 DENIAL OF SERVICE PROTECTION
 ### SC-6 RESOURCE AVAILABILITY
 ### SC-7 BOUNDARY PROTECTION
+This F5 solution provides the ability to control from which IP addresses the BIG-IP management network interface accepts connections (to the management web GUI or command line, of to the SNMP service).
+
+    4. BOUNDARY PROTECTION | EXTERNAL TELECOMMUNICATIONS SERVICES
+    The organization implements a managed interface for each external telecommunication service;
+    The organization establishes a traffic flow policy for each managed interface;
+    The organization protects the confidentiality and integrity of the information being transmitted across each interface;
+    The organization documents each exception to the traffic flow policy with a supporting mission/business need and duration of that need; and
+    The organization reviews exceptions to the traffic flow policy [Assignment: organization-defined frequency] and removes exceptions that are no longer supported by an explicit mission/business need.
+    Enhancement Supplemental Guidance: Related control: SC-8.
+
+    5. BOUNDARY PROTECTION | DENY BY DEFAULT / ALLOW BY EXCEPTION
+    The information system at managed interfaces denies network communications traffic by default and allows network communications traffic by exception (i.e., deny all, permit by exception).
+
+    Enhancement Supplemental Guidance: This control enhancement applies to both inbound and outbound network communications traffic. A deny-all, permit-by-exception network communications traffic policy ensures that only those connections which are essential and approved are allowed.
+    7. BOUNDARY PROTECTION | PREVENT SPLIT TUNNELLING FOR REMOTE DEVICES
+    The information system, in conjunction with a remote device, prevents the device from simultaneously establishing non-remote connections with the system and communicating via some other connection to resources in external networks.
+
+    Enhancement Supplemental Guidance: This control enhancement is implemented within remote devices (e.g., notebook computers) through configuration settings to disable split tunnelling in those devices, and by preventing those configuration settings from being readily configurable by users. This control enhancement is implemented within the information system by the detection of split tunnelling (or of configuration settings that allow split tunnelling) in the remote device, and by prohibiting the connection if the remote device is using split tunnelling. Split tunnelling might be desirable by remote users to communicate with local information system resources such as printers/file servers. However, split tunnelling would in effect allow unauthorized external connections, making the system more vulnerable to attack and to exfiltration of organizational information. The use of VPNs for remote connections, when adequately provisioned with appropriate security controls, may provide the organization with sufficient assurance that it can effectively treat such connections as non-remote connections from the confidentiality and integrity perspective. VPNs thus provide a means for allowing non-remote communications paths from remote devices. The use of an adequately provisioned VPN does not eliminate the need for preventing split tunnelling.
+
+    8. BOUNDARY PROTECTION | ROUTE TRAFFIC TO AUTHENTICATED PROXY SERVERS
+    The information system routes [Assignment: organization-defined internal communications traffic] to [Assignment: organization-defined external networks] through authenticated proxy servers at managed interfaces.
+
+    Enhancement Supplemental Guidance: External networks are networks outside of organizational control. A proxy server is a server (i.e., information system or application) that acts as an intermediary for clients requesting information system resources (e.g., files, connections, web pages, or services) from other organizational servers. Client requests established through an initial connection to the proxy server are evaluated to manage complexity and to provide additional protection by limiting direct connectivity. Web content filtering devices are one of the most common proxy servers providing access to the Internet. Proxy servers support logging individual Transmission Control Protocol (TCP) sessions and blocking specific Uniform Resource Locators (URLs), domain names, and Internet Protocol (IP) addresses. Web proxies can be configured with organization-defined lists of authorized and unauthorized websites. Related controls: AC-3, AU-2.
+
+    9. BOUNDARY PROTECTION | RESTRICT THREATENING OUTGOING COMMUNICATIONS TRAFFIC
+    The information system detects and denies outgoing communications traffic posing a threat to external information systems; and
+    The information system audits the identity of internal users associated with denied communications.
+    Enhancement Supplemental Guidance: Detecting outgoing communications traffic from internal actions that may pose threats to external information systems is sometimes termed extrusion detection. Extrusion detection at information system boundaries as part of managed interfaces includes the analysis of incoming and outgoing communications traffic searching for indications of internal threats to the security of external systems. Such threats include, for example, traffic indicative of denial of service attacks and traffic containing malicious code. Related controls: AU-2, AU-6, SC-38, SC-44, SI-3, SI-4.
+
+    10. BOUNDARY PROTECTION | PREVENT UNAUTHORIZED EXFILTRATION
+    The organization prevents the unauthorized exfiltration of information across managed interfaces.
+
+    Enhancement Supplemental Guidance: Safeguards implemented by organizations to prevent unauthorized exfiltration of information from information systems include, for example: (i) strict adherence to protocol formats; (ii) monitoring for beaconing from information systems; (iii) monitoring for steganography; (iv) disconnecting external network interfaces except when explicitly needed; (v) disassembling and reassembling packet headers; and (vi) employing traffic profile analysis to detect deviations from the volume/types of traffic expected within organizations or call backs to command and control centres. Devices enforcing strict adherence to protocol formats include, for example, deep packet inspection firewalls and XML gateways. These devices verify adherence to protocol formats and specification at the application layer and serve to identify vulnerabilities that cannot be detected by devices operating at the network or transport layers. This control enhancement is closely associated with cross-domain solutions and system guards enforcing information flow requirements. Related control: SI-3.
+
+    11. BOUNDARY PROTECTION | RESTRICT INCOMING COMMUNICATIONS TRAFFIC
+    The information system only allows incoming communications from [Assignment: organization-defined authorized sources] routed to [Assignment: organization-defined authorized destinations].
+
+    Enhancement Supplemental Guidance: This control enhancement provides determinations that source and destination address pairs represent authorized/allowed communications. Such determinations can be based on several factors including, for example, the presence of source/destination address pairs in lists of authorized/allowed communications, the absence of address pairs in lists of unauthorized/disallowed pairs, or meeting more general rules for authorized/allowed source/destination pairs. Related control: AC-3.
+
+    13. BOUNDARY PROTECTION | ISOLATION OF SECURITY TOOLS / MECHANISMS / SUPPORT COMPONENTS
+    The organization isolates [Assignment: organization-defined information security tools, mechanisms, and support components] from other internal information system components by implementing physically separate sub-networks with managed interfaces to other components of the system.
+
+    Enhancement Supplemental Guidance: Physically separate sub-networks with managed interfaces are useful, for example, in isolating computer network defences from critical operational processing networks to prevent adversaries from discovering the analysis and forensics techniques of organizations. Related controls: SA-8, SC-2, SC-3.
+
+    15. BOUNDARY PROTECTION | ROUTE PRIVILEGED NETWORK ACCESSES
+    The information system routes all networked, privileged accesses through a dedicated, managed interface for purposes of access control and auditing.
+
+    Enhancement Supplemental Guidance: Related controls: AC-2, AC-3, AU-2, SI-4.
+
+    16. BOUNDARY PROTECTION | PREVENT DISCOVERY OF COMPONENTS / DEVICES
+    The information system prevents discovery of specific system components composing a managed interface.
+
+    Enhancement Supplemental Guidance: This control enhancement protects network addresses of information system components that are part of managed interfaces from discovery through common tools and techniques used to identify devices on networks. Network addresses are not available for discovery (e.g., network address not published or entered in domain name systems), requiring prior knowledge for access. Another obfuscation technique is to periodically change network addresses.
+
+    17. BOUNDARY PROTECTION | AUTOMATED ENFORCEMENT OF PROTOCOL FORMATS
+    The information system enforces adherence to protocol formats.
+
+    Enhancement Supplemental Guidance: Information system components that enforce protocol formats include, for example, deep packet inspection firewalls and XML gateways. Such system components verify adherence to protocol formats/specifications (e.g., IEEE) at the application layer and identify significant vulnerabilities that cannot be detected by devices operating at the network or transport layers. Related control: SC-4.
+
+    18. BOUNDARY PROTECTION | FAIL SECURE
+    The information system fails securely in the event of an operational failure of a boundary protection device.
+
+    Enhancement Supplemental Guidance: Fail secure is a condition achieved by employing information system mechanisms to ensure that in the event of operational failures of boundary protection devices at managed interfaces (e.g., routers, firewalls, guards, and application gateways residing on protected sub-networks commonly referred to as demilitarized zones), information systems do not enter into insecure states where intended security properties no longer hold. Failures of boundary protection devices cannot lead to, or cause information external to the devices to enter the devices, nor can failures permit unauthorized information releases. Related controls: CP-2, SC-24.
+
+    19. BOUNDARY PROTECTION | BLOCKS COMMUNICATION FROM NON-ORGANIZATIONALLY CONFIGURED HOSTS
+    The information system blocks both inbound and outbound communications traffic between [Assignment: organization-defined communication clients] that are independently configured by end users and external service providers.
+
+    Enhancement Supplemental Guidance: Communication clients independently configured by end users and external service providers include, for example, instant messaging clients. Traffic blocking does not apply to communication clients that are configured by organizations to perform authorized functions.
+
+    20. BOUNDARY PROTECTION | DYNAMIC ISOLATION / SEGREGATION
+    The information system provides the capability to dynamically isolate/segregate [Assignment: organization-defined information system components] from other components of the system.
+
+    Enhancement Supplemental Guidance: The capability to dynamically isolate or segregate certain internal components of organizational information systems is useful when it is necessary to partition or separate certain components of dubious origin from those components possessing greater trustworthiness. Component isolation reduces the attack surface of organizational information systems. Isolation of selected information system components is also a means of limiting the damage from successful cyber-attacks when those attacks occur.
+
+    21. BOUNDARY PROTECTION | ISOLATION OF INFORMATION SYSTEM COMPONENTS
+    The organization employs boundary protection mechanisms to separate [Assignment: organization-defined information system components] supporting [Assignment: organization-defined missions and/or business functions].
+
+    Enhancement Supplemental Guidance: Organizations can isolate information system components performing different missions and/or business functions. Such isolation limits unauthorized information flows among system components and also provides the opportunity to deploy greater levels of protection for selected components. Separating system components with boundary protection mechanisms provides the capability for increased protection of individual components and to more effectively control information flows between those components. This type of enhanced protection limits the potential harm from cyber-attacks and errors. The degree of separation provided varies depending upon the mechanisms chosen. Boundary protection mechanisms include, for example, routers, gateways, and firewalls separating system components into physically separate networks or sub-networks, cross-domain devices separating sub-networks, virtualization techniques, and encrypting information flows among system components using distinct encryption keys. Related controls: CA-9, SC-3.
+
+    22. BOUNDARY PROTECTION | SEPARATE SUBNETS FOR CONNECTING TO DIFFERENT SECURITY DOMAINS
+    The information system implements separate network addresses (i.e., different subnets) to connect to systems in different security domains.
+
+    Enhancement Supplemental Guidance: Decomposition of information systems into subnets helps to provide the appropriate level of protection for network connections to different security domains containing information with different security categories or classification levels.
+
+    23. BOUNDARY PROTECTION | DISABLE SENDER FEEDBACK ON PROTOCOL VALIDATION FAILURE
+    The information system disables feedback to senders on protocol format validation failure.
+
+    Enhancement Supplemental Guidance: Disabling feedback to senders when there is a failure in protocol validation format prevents adversaries from obtaining information which would otherwise be unavailable.
+
 ### SC-8 TRANSMISSION CONFIDENTIALITY AND INTEGRITY
+    Control:
+
+    The information system protects the [Selection (one or more): confidentiality; integrity] of transmitted information.
+    Supplemental Guidance: This control applies to both internal and external networks and all types of information system components from which information can be transmitted (e.g., servers, mobile devices, notebook computers, printers, copiers, scanners, facsimile machines). Communication paths outside the physical protection of a controlled boundary are exposed to the possibility of interception and modification. Protecting the confidentiality and/or integrity of organizational information can be accomplished by physical means (e.g., by employing protected distribution systems) or by logical means (e.g., employing encryption techniques). Organizations relying on commercial providers offering transmission services as commodity services rather than as fully dedicated services (i.e., services which can be highly specialized to individual customer needs), may find it difficult to obtain the necessary assurances regarding the implementation of needed security controls for transmission confidentiality/integrity. In such situations, organizations determine what types of confidentiality/integrity services are available in standard, commercial telecommunication service packages. If it is infeasible or impractical to obtain the necessary security controls and assurances of control effectiveness through appropriate contracting vehicles, organizations implement appropriate compensating security controls or explicitly accept the additional risk. Related controls: AC-17, PE-4.
+
+    Control Enhancements:
+
+    1. TRANSMISSION CONFIDENTIALITY AND INTEGRITY | CRYPTOGRAPHIC OR ALTERNATE PHYSICAL PROTECTION
+    The information system implements cryptographic mechanisms to [Selection (one or more): prevent unauthorized disclosure of information; detect changes to information] during transmission unless otherwise protected by [Assignment: organization-defined alternative physical safeguards]. The cryptography must be compliant with the requirements of control SC-13.
+
+    Enhancement Supplemental Guidance: Encrypting information for transmission protects information from unauthorized disclosure and modification. Cryptographic mechanisms implemented to protect information integrity include, for example, cryptographic hash functions which have common application in digital signatures, checksums, and message authentication codes. Alternative physical security safeguards include, for example, protected distribution systems. Related control: SC-13.
+
+    2. TRANSMISSION CONFIDENTIALITY AND INTEGRITY | PRE / POST TRANSMISSION HANDLING
+    The information system maintains the [Selection (one or more): confidentiality; integrity] of information during preparation for transmission and during reception.
+
+    Enhancement Supplemental Guidance: Information can be either unintentionally or maliciously disclosed or modified during preparation for transmission or during reception including, for example, during aggregation, at protocol transformation points, and during packing/unpacking. These unauthorized disclosures or modifications compromise the confidentiality or integrity of the information. Related control: AU-10.
+
+    3. TRANSMISSION CONFIDENTIALITY AND INTEGRITY | CRYPTOGRAPHIC PROTECTION FOR MESSAGE EXTERNALS
+    The information system implements cryptographic mechanisms to protect message externals unless otherwise protected by [Assignment: organization-defined alternative physical safeguards].
+
+    Enhancement Supplemental Guidance: This control enhancement addresses protection against unauthorized disclosure of information. Message externals include, for example, message headers/routing information. This control enhancement prevents the exploitation of message externals and applies to both internal and external networks or links that may be visible to individuals who are not authorized users. Header/routing information is sometimes transmitted unencrypted because the information is not properly identified by organizations as having significant value or because encrypting the information can result in lower network performance and/or higher costs. Alternative physical safeguards include, for example, protected distribution systems. Related controls: SC-12, SC-13.
+
+    4. TRANSMISSION CONFIDENTIALITY AND INTEGRITY | CONCEAL / RANDOMIZE COMMUNICATIONS
+    The information system implements cryptographic mechanisms to conceal or randomize communication patterns unless otherwise protected by [Assignment: organization-defined alternative physical safeguards].
+
+    Enhancement Supplemental Guidance: This control enhancement addresses protection against unauthorized disclosure of information. Communication patterns include, for example, frequency, periods, amount, and predictability. Changes to communications patterns can reveal information having intelligence value especially when combined with other available information related to missions/business functions supported by organizational information systems. This control enhancement prevents the derivation of intelligence based on communications patterns and applies to both internal and external networks or links that may be visible to individuals who are not authorized users. Encrypting the links and transmitting in continuous, fixed/random patterns prevents the derivation of intelligence from the system communications patterns. Alternative physical safeguards include, for example, protected distribution systems. Related controls: SC-12, SC-13.
+
 ### SC-9 TRANSMISSION CONFIDENTIALITY
 ### SC-10 NETWORK DISCONNECT
+This F5 solution automatically terminates the network connection associated with a communications session at the end of the session or logs out users when the defined time-period of inactivity has elapsed and different time-period values can be be specified for connections to the BIG-IP system's management services: web-based Configuration utility, SSH connections, Console and TMSH. For other individual infrastructure components such as the servers and firewalls, as well as for access to the appications services and contained within this infrastructure, this is accomplished by configuration of the "Inactivity Timeout" setting in the Access policy.
+
 ### SC-11 TRUSTED PATH
 ### SC-12 CRYPTOGRAPHIC KEY ESTABLISHMENT AND MANAGEMENT
 ### SC-13 CRYPTOGRAPHIC PROTECTION
