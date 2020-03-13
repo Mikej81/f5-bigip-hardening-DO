@@ -4,7 +4,7 @@ Annex 3A - Security Control Catalogue (ITSG-33)
 
 ## 3.1 FAMILY: ACCESS CONTROL
 ### AC-1 - Access Control Policy and Procedures
-This control would be implemented outside of BIG-IP.
+This control would be implemented outside of this F5 solution.
 
 ### AC-2 ACCOUNT MANAGEMENT
 The lifecycle of user accounts and roles associated with them is the focus of this control. This F5 solution enables configuration of authentication sources (local, LDAP, RADIUS, etc.) as well as inactivity timeout and remote role assignment in support of this control.
@@ -23,7 +23,7 @@ This F5 solution automatically disables inactive accounts after the defined time
 This is accomplished by leveraging the directory service attributes that identify the last successful login of each account and by programing the desired logic in the F5 Visual Policy Editor to automatically deny access to an account that has been inactive for longer than the defined time period after the account has been successfully authorized, and this is enforced for access to the individual infrastructure components of the solution such as the F5 appliances, the servers and the firewalls, as well as for access to the applications serviced and contained within this infrastructure.
 
 #### AC-2(5) ACCOUNT MANAGEMENT | INACTIVITY LOGOUT
-This F5 solution automatically logs out users when the defined time-period of inactivity has elapsed and different time-period values can be be specified for connections to the BIG-IP system's management services: web-based Configuration utility, SSH connections, Console and TMSH. For other individual infrastructure components such as the servers and firewalls, as well as for access to the appications services and contained within this infrastructure, this is accomplished by configuration of the "Inactivity Timeout" setting in the Access policy.
+This F5 solution automatically logs out users when the defined time-period of inactivity has elapsed and different time-period values can be be specified for connections to the system's management services: web-based Configuration utility, SSH connections, Console and TMSH. For other individual infrastructure components such as the servers and firewalls, as well as for access to the appications services and contained within this infrastructure, this is accomplished by configuration of the "Inactivity Timeout" setting in the Access policy.
 
 #### AC-2(6) ACCOUNT MANAGEMENT | DYNAMIC PRIVILEGE MANAGEMENT
 This F5 solution automatically, dynamically and immediately enforces access controls continuously over the entire duration of a user's authorized session. This is also commonly referred to as the "Zero Trust" access model. The solution also enforces "step-up authentication" to dynamically adjust the privileges of users based on any number of parameters, including time of day, sub-systems they are attempting to access, or changes in their device's posture, such as disabling their client anti-virus software or becoming infected with malware, and allows for the encryption of the communications to be changed, including changing the encryption keys and requesting client-provided certificate authentication, also referred to as "mutual authentication". This is accomplished with the configuration of the corresponding logic in the F5 access policy definition and is enforced for access to the individual infrastructure components of the solution such as the F5 appliances, the servers and the firewalls, as well as for access to the applications serviced and contained within this infrastructure.
@@ -47,7 +47,7 @@ This F5 solution monitors and reports information system accounts for atypical u
 This F5 solution disables access for accounts immediately upon the organization identifying in their directory service that the corresponding user poses a significant risk. This is accomplished with the configuration of the corresponding logic in the F5 access policy definition and is enforced for access to the individual infrastructure components of the solution such as the F5 appliances, the servers and the firewalls, as well as for access to the applications serviced and contained within this infrastructure.
 
 ### AC-3 ACCESS ENFORCEMENT
-Access to the BIG-IP must be made through approved means. Related to AC-2, remote authentication and role determination help satisfy this control.
+Access to this F5 solution must be made through approved means. Related to AC-2, remote authentication and role determination help satisfy this control.
 
 #### AC-3(2) ACCESS ENFORCEMENT | DUAL AUTHORIZATION
 This F5 solution enforces dual authorization, also known as two-person control, for organization-defined privileged commands and/or actions. This is accomplished with the configuration of the corresponding logic in the F5 access policy definition, including notification of request for authorization to the two persons, and is enforced for access to the individual infrastructure components of the solution such as the F5 appliances, the servers and the firewalls, as well as for access to the applications serviced and contained within this infrastructure.
@@ -134,11 +134,11 @@ Enhancement Supplemental Guidance: Policy enforcement mechanisms apply filtering
 
 
 ### AC-5 SEPARATION OF DUTIES
-Encourages use of role-based access control (RBAC). BIG-IP supports a variety of different security roles. Users may be assigned roles on the BIG-IP or by reference to a central authority (for example, mapping via an LDAP attribute).
+Encourages use of role-based access control (RBAC). This F5 solution supports a variety of different security roles. Users may be assigned roles on the system or by reference to a central authority (for example, mapping via an LDAP attribute).
 
 ### AC-6 LEAST PRIVILEGE
 This F5 solution supports this control using role-based access control, Administrative Partitions, and auditing.
-This F5 solution enables an external directory service to authenticate BIG-IP management users. The directory service may also store RBAC roles for users. (Even when you enable an external directory service, the BIG-IP system continues to support local user accounts.)
+This F5 solution enables an external directory service to authenticate management users. The directory service may also store RBAC roles for users. (Even when you enable an external directory service, the system continues to support local user accounts.)
 The default role for users not assigned a specific role by the remote directory service is "No Access" and as a result will be forbiden access even if succesfully authenticated.
 Users do not have access to he TMSH (CLI) console by default.
 
@@ -148,7 +148,7 @@ If the organization opts not to leveraged their external directory server to, th
 
 ### AC-8 SYSTEM USE NOTIFICATION
 You should warn users about policies governing their access to the system.
-This F5 solution provides the ability to alter the banner messages which appear to users of the management web GUI or the BIG-IP command line.
+This F5 solution provides the ability to alter the banner messages which appear to users of the management web GUI or the command line.
 
 ### AC-9 PREVIOUS LOGON (ACCESS) NOTIFICATION
 Upon logon, users should be notified of their last successful logon time plus additional logon history. 
@@ -159,107 +159,162 @@ Limit the number of concurrent sessions by user or account type.
 This F5 solution provides the ability to limit the number of concurrent users of the management web GUI and also for access to the other individual infrastructure components of the solution such as the servers and the firewalls, as well as for access to the applications serviced and contained within this infrastructure.
 
 ### AC-11 SESSION LOCK
-Session locking differs from automatic logout due to idleness because the user's session state is maintained. BIG-IP does not have this feature. A screen- or client-locking feature on the user's workstation could help meet this control.
+Session locking differs from automatic logout due to idleness because the user's session state is maintained. This F5 solution does not have this feature. A screen- or client-locking feature on the user's workstation could help meet this control.
 
 ### AC-12 SESSION TERMINATION
-This F5 solution automatically displays a suitable message and terminates the network connection associated with a communications session at the end of the session or logs out users when the defined time-period of inactivity has elapsed and different time-period values can be be specified for connections to the BIG-IP system's management services: web-based Configuration utility, SSH connections, Console and TMSH. For other individual infrastructure components such as the servers and firewalls, as well as for access to the appications services and contained within this infrastructure, this is accomplished by configuration of the "Inactivity Timeout" setting in the Access policy.
+This F5 solution automatically displays a suitable message and terminates the network connection associated with a communications session at the end of the session or logs out users when the defined time-period of inactivity has elapsed and different time-period values can be be specified for connections to the system's management services: web-based Configuration utility, SSH connections, Console and TMSH. For other individual infrastructure components such as the servers and firewalls, as well as for access to the appications services and contained within this infrastructure, this is accomplished by configuration of the "Inactivity Timeout" setting in the Access policy.
 
 ### AC-13 SUPERVISION AND REVIEW — ACCESS CONTROL
 This control appeared in earlier revisions of ITSG-33, but has been withdrawn.
 
 ### AC-14 PERMITTED ACTIONS WITHOUT IDENTIFICATION OR AUTHENTICATION
+This control addresses actions, if any, available without user authentication or authorization. This F5 solution does not offer any services to unauthenticated/unauthorized users.
+
 ### AC-15 AUTOMATED MARKING
+This control appeared in earlier revisions of ITSG-33, but has been withdrawn.
+
 ### AC-16 SECURITY ATTRIBUTES
+This control relates to associating security attributes to information in storage, in process, and in transmission.
+
 ### AC-17 REMOTE ACCESS
+Addressing this control will go beyond this F5 solution. However, all remote management access uses encrypted transport (AC-17(2)) except SNMP. Also see SC-7 for boundary protection which also controls remote access.
+
 ### AC-18 WIRELESS ACCESS
+This F5 solution has no configuration options specifically related to wireless networking. This control would mainly be addressed outside this F5 solution and by compliance to SC-7.
+
 ### AC-19 ACCESS CONTROL FOR MOBILE DEVICES
+This F5 solution has no configuration options specifically related to mobile devices. This control would mainly be addressed outside of this F5 solution and by compliance to AC-3 and SC-7.
+
 ### AC-20 USE OF EXTERNAL INFORMATION SYSTEMS
+This control relates to communications with systems in other administrative domains. This F5 solution's management only operates in a single administrative domain so no configuration options are responsive.
+
 ### AC-21 USER-BASED COLLABORATION AND INFORMATION SHARING
+This control would be implemented outside of this F5 solution.
+
 ### AC-22 PUBLICLY ACCESSIBLE CONTENT
+This control would be implemented outside of this F5 solution.
+
 ### AC-23 DATA MINING PROTECTION
+This control would be implemented outside of this F5 solution.
+
 ### AC-24 ACCESS CONTROL DECISIONS
+This control would be implemented outside of this F5 solution.
+
 ### AC-25 REFERENCE MONITOR
+This control concerns the incorporation of the “reference monitor” concept into system design and implementation.
 
 ## 3.2 FAMILY: AWARENESS AND TRAINING
-### AT-1 SECURITY AWARENESS AND TRAINING POLICY AND PROCEDURES
-### AT-2 SECURITY AWARENESS
-### AT-3 ROLE BASED SECURITY TRAINING
-### AT-4 SECURITY TRAINING RECORDS
-### AT-5 CONTACTS WITH SECURITY GROUPS AND ASSOCIATIONS
+None of the controls (AT-nn) in this section are relevant to this F5 solution.
 
 ## 3.3 FAMILY: AUDIT AND ACCOUNTABILITY
 ### AU-1 AUDIT AND ACCOUNTABILITY POLICY AND PROCEDURES
+This control would be implemented outside of this F5 solution.
+
 ### AU-2 AUDITABLE EVENTS
-This F5 solution provides the ability to configure audit logging of management actions. Typically you enable TMSH and MCP audit logs. Only if you do not have a syslog server to accept log messages (see Syslog Configuration — AU-8, AU-9(2), AU-12(2) on page 16) should you consider disabling logs to save BIG-IP disk space.
+This F5 solution provides the ability to activate audit event recording for management actions. Typically you enable TMSH and MCP audit logs. MCP logs record changes initiated via any user inerface. Only if you do not have a syslog server to accept log messages should you consider disabling logs to save disk space.
 
 ### AU-3 CONTENT OF AUDIT RECORDS
+The contents of this F5 solution's audit records are basically fixed.
+
 ### AU-4 AUDIT STORAGE CAPACITY
+Space for storing audit records (logs) on this F5 solution is not directly configurable, but you should send audit records to a remote server (see AU-9) and apply this control that context.
+
 ### AU-5 RESPONSE TO AUDIT PROCESSING FAILURES
+This F5 solution has no configuration options specifically related to this control.
+
 ### AU-6 AUDIT REVIEW, ANALYSIS, AND REPORTING
+This control would be implemented outside of this F5 solution.
+
 ### AU-7 AUDIT REDUCTION AND REPORT GENERATION
+This control would be implemented outside of this F5 solution.
+
 ### AU-8 TIME STAMPS
-This F5 solution provides the ability to specify the IP addresses of your primary and (if available) alternate NTP servers. A working NTP configuration is vital to BIG-IP management (and application) security.
-This F5 solution provides the ability to enable the use of ISO-format dates in log messages (generally required for SP-800-53r4 compliance). You may also add syslog servers to receive log messages.
+To meet this control you may configure compliant (ISO) time stamps for audit messages (also see AU-12) and configure NTP server(s) as sources of accurate time.
+This F5 solution provides the ability to specify the IP addresses of your primary and (if available) alternate NTP servers. A working NTP configuration is vital to this F5 solution's management (and application) security.
+This F5 solution provides the ability to enable the use of ISO-format dates in log messages (generally required for ITSG-33 compliance). You may also add syslog servers to receive log messages.
 
 ### AU-9 PROTECTION OF AUDIT INFORMATION
-This F5 solution provides the ability to enable the use of ISO-format dates in log messages (generally required for SP-800-53r4 compliance). You may also add syslog servers to receive log messages.
+User roles (AC-6) control access to audit information on this F5 solution. You should send audit records to a remote server and apply this control in that context. This F5 solution provides the ability to enable the use of ISO-format dates in log messages (generally required for ITSG-33 compliance). You may also add syslog servers to receive log messages.
 
 ### AU-10 NON-REPUDIATION
+This F5 solution has no configuration options specifically related to this control.
+
 ### AU-11 AUDIT RECORD RETENTION
+Audit record log rollover is not directly configurable in this F5 solution. You should send audit records to a remote server and apply this control in that context (see AU-9).
+
 ### AU-12 AUDIT GENERATION
-This F5 solution provides the ability to enable the use of ISO-format dates in log messages (generally required for SP-800-53r4 compliance). You may also add syslog servers to receive log messages.
+This control would mostly be implemented outside of this F5 solution. This F5 solution provides the ability to enable the use of ISO-format dates in log messages (generally required for ITSG-33 compliance). You may also add syslog servers to receive log messages.
 
 ### AU-13 MONITORING FOR INFORMATION DISCLOSURE
+This control would be implemented outside of this F5 solution.
+
 ### AU-14 SESSION AUDIT
+This F5 solution does not provide the capability envisioned by this control. A portion of this information could be selected from the audit message stream (see AU-2, AU-12).
+
 ### AU-15 ALTERNATE AUDIT CAPABILITY
+This F5 solution retains copies of audit messages sent to remote servers for a few days, typically (see AU-4). An alternate procedure to retrieve audit data from BIG-IP could be defined in case a remote audit log server is unavailable or damaged.
+
 ### AU-16 CROSS-ORGANIZATIONAL AUDITING
+This control would be implemented outside of this F5 solution.
 
 ## 3.4 FAMILY: SECURITY ASSESSMENT AND AUTHORIZATION
-### CA-1 SECURITY ASSESSMENT AND AUTHORIZATION POLICIES AND PROCEDURES
-### CA-2 SECURITY ASSESSMENTS
-### CA-3 INFORMATION SYSTEM CONNECTIONS
-### CA-4 SECURITY CERTIFICATION
-### CA-5 PLAN OF ACTION AND MILESTONES
-### CA-6 SECURITY AUTHORIZATION
-### CA-7 CONTINUOUS MONITORING
-### CA-8 PENETRATION TESTING
-### CA-9 INTERNAL SYSTEM CONNECTIONS
+These controls would be implemented outside of this F5 solution.
 
 ## 3.5 FAMILY: CONFIGURATION MANAGEMENT
 ### CM-1 CONFIGURATION MANAGEMENT POLICY AND PROCEDURES
+These controls would be implemented outside of this F5 solution.
+
 ### CM-2 BASELINE CONFIGURATION
+This F5 solution supports UCS and SCF files that may furnish data required to implement these controls. F5 BIG-IQ may also be utilized.
+
 ### CM-3 CONFIGURATION CHANGE CONTROL
+These controls would be implemented outside of this F5 solution.
+
 ### CM-4 SECURITY IMPACT ANALYSIS
+These controls would be implemented outside of this F5 solution.
+
 ### CM-5 ACCESS RESTRICTIONS FOR CHANGE
 This F5 solution enforces a role-based access control policy over defined subjects and objects and controls access based up organization-defined roles and users authorized to assume such roles, as defined in the organization's directory service. This is accomplished with the configuration of the corresponding logic in the F5 access policy definition and is enforced for access to the individual infrastructure components of the solution such as the F5 appliances, the servers and the firewalls, as well as for access to the applications serviced and contained within this infrastructure.
-This F5 solution provides the ability to configure audit logging of management actions. Typically you enable TMSH and MCP audit logs. Only if you do not have a syslog server to accept log messages (see Syslog Configuration — AU-8, AU-9(2), AU-12(2) on page 16) should you consider disabling logs to save BIG-IP disk space.
+This F5 solution provides the ability to configure audit logging of management actions. Typically you enable TMSH and MCP audit logs. Only if you do not have a syslog server to accept log messages should you consider disabling logs to save disk space.
+This F5 solution supports signature verification for TMOS software updates (CM-5(3)).
 
 ### CM-6 CONFIGURATION SETTINGS
+These controls would be implemented outside of this F5 solution.
+
 ### CM-7 LEAST FUNCTIONALITY
+This F5 solution lets you adjust the services accessible on self IP addresses so you can constrain the functionality of BIG-IP in the network.
+
 ### CM-8 INFORMATION SYSTEM COMPONENT INVENTORY
+These controls would be implemented outside of this F5 solution. However, F5 BIG-IQ may be utilized in the implementation of these controls.
+
 ### CM-9 CONFIGURATION MANAGEMENT PLAN
+These controls would be implemented outside of this F5 solution.
+
 ### CM-10 SOFTWARE USAGE RESTRICTIONS
+These controls would be implemented outside of this F5 solution.
+
 ### CM-11 USER INSTALLED SOFTWARE
+These controls would be implemented outside of this F5 solution.
 
 ## 3.6 FAMILY: CONTINGENCY PLANNING (CONTINUITY PLANNING)
-### CP-1 CONTINGENCY PLANNING POLICY AND PROCEDURES
-### CP-2 CONTINGENCY PLAN
-### CP-3 CONTINGENCY TRAINING
-### CP-4 CONTINGENCY PLAN TESTING AND EXERCISES
-### CP-5 CONTINGENCY PLAN UPDATE
-### CP-6 ALTERNATE STORAGE SITE
+Most of the controls (CP-nn) in this family would be implemented outside of this F5 solution. Some exceptions are noted here.
+
 ### CP-7 ALTERNATE PROCESSING SITE
-### CP-8 TELECOMMUNICATIONS SERVICES
+This F5 solution supports configuration synchronization and functional failover device groups, as well as global traffic management (F5 BIG-IP DNS), so f5 customers can build highly-reliable systems within and among different processing sites (“data centers”).
+
 ### CP-9 INFORMATION SYSTEM BACKUP
+This F5 solution does not store user data and generally the device configuration is all that must be backed up to enable service recovery in the event of a failure. Logs may be backed up through remote syslog. BIG-IQ may be used to automate backup of device configuration and historical statistical data.
+
 ### CP-10 INFORMATION SYSTEM RECOVERY AND RECONSTITUTION
-### CP-11 ALTERNATE COMMUNICATIONS PROTOCOLS
-### CP-12 SAFE MODE
-### CP-13 ALTERNATIVE SECURITY MECHANISMS
+You may recover this F5 solution automatically in certain high-availability scenarios, by hand, or using F5 BIG-IQ.
 
 ## 3.7 FAMILY: IDENTIFICATION AND AUTHENTICATION
 ### IA-1 IDENTIFICATION AND AUTHENTICATION POLICY AND PROCEDURES
+These controls would be implemented outside of this F5 solution.
+
 ### IA-2 IDENTIFICATION AND AUTHENTICATION (ORGANIZATIONAL USERS)
 This F5 solution uniquely identifies and authenticates organizational users (or processes acting on behalf of organizational users).
+This F5 solution supports user authentication to local or external directories using single- or multi-factor credentials.
 The information system implements multifactor authentication for:
 - network access to privileged accounts
 - network access to non-privileged accounts
@@ -274,12 +329,16 @@ The information system implements organization-defined out-of-band authenticatio
 
 ### IA-3 DEVICE IDENTIFICATION AND AUTHENTICATION
 The information system uniquely identifies and authenticates organization-defined specific and/or types of devices before establishing a local, remote or network connection using bidirectional authentication that is cryptographically based.
+This F5 solution secures access to external authentication/directory services using TLS/SSL or shared-secret schemes for mutual authentication.
 The F5 solution provides SSL VPN access with dynamic address allocation lease information and the lease duration assigned to devices is in accordance with organization-defined lease information and lease duration and supports audits of the lease information when assigned to a device.
 The F5 solution supports device attestation handled by an organization-defined configuration management process to identify and authente a device based on its configuration and known operating state
 
 ### IA-4 IDENTIFIER MANAGEMENT
+These controls would be implemented outside of this F5 solution.
+
 ### IA-5 AUTHENTICATOR MANAGEMENT
-This F5 solution supports secure local password policies for passwords of BIG-IP local user accounts when the organization choses not to leverage external directory services that  enforce their own password-strength policies. The solution allows the organization to define the how long a user's password should be valid, how many password changes are required before a previously used password can be reused, and what are the minimum number of different characters required for passwords, including the total password lenght, lowercase, uppercase, special chars and digit characters.
+This F5 solution supports secure local password policies for passwords of local user accounts when the organization choses not to leverage external directory services that  enforce their own password-strength policies. The solution allows the organization to define the how long a user's password should be valid, how many password changes are required before a previously used password can be reused, and what are the minimum number of different characters required for passwords, including the total password lenght, lowercase, uppercase, special chars and digit characters.
+This F5 solution lets you configure password policy for local authentication as well as security for authentication data used with external authentication/directory services.
 
     Control:
 
@@ -368,130 +427,112 @@ This F5 solution supports secure local password policies for passwords of BIG-IP
     The organization, for PKI-based authentication, employs a deliberate organization-wide methodology for managing the content of PKI trust stores installed across all platforms including networks, operating systems, browsers, and applications.
 
 ### IA-6 AUTHENTICATOR FEEDBACK
-This F5 solution enables an external directory service to authenticate BIG-IP management users. The directory service may also store RBAC roles for users. (Even when you enable an external directory service, the BIG-IP system continues to support local user accounts.)
+This F5 solution enables an external directory service to authenticate management users. The directory service may also store RBAC roles for users.
 The default role for users not assigned a specific role by the remote directory service is "No Access" and as a result will be forbiden access even if succesfully authenticated.
 Users do not have access to he TMSH (CLI) console by default.
 
 ### IA-7 CRYPTOGRAPHIC MODULE AUTHENTICATION
+The information system implements mechanisms for authentication to a cryptographic module that meet the requirements of applicable GC legislation and TBS policies, directives, and standards for such authentication.
+-> add F5 FIPS and HSM details here?
+
 ### IA-8 IDENTIFICATION AND AUTHENTICATION (NON-ORGANIZATIONAL USERS)
+Control:
+
+A. The information system uniquely identifies and authenticates non-organizational users (or processes acting on behalf of non-organizational users).
+
+    Supplemental Guidance: Non-organizational users include information system users other than organizational users explicitly covered by IA-2. These individuals are uniquely identified and authenticated for accesses other than those accesses explicitly identified and documented in AC-14. Authentication of non-organizational users accessing federal information systems may be required to protect federal, proprietary, or privacy-related information (with exceptions noted for national security systems). Organizations use risk assessments to determine authentication needs and consider scalability, practicality, and security in balancing the need to ensure ease of use for access to GC information and information systems with the need to protect and adequately mitigate risk. IA-2 addresses identification and authentication requirements for access to information systems by organizational users. Related controls: AC-2, AC-14, AC-17, AC-18, IA-2, IA-4, IA-5, MA-4, RA-3, SA-12, SC-8.
+
+    Control Enhancements:
+
+    Enhancement Supplemental Guidance: The TBS Standard on Identity and Credential Assurance [Reference 60] establishes requirements for organizations to adopt a common methodology for assessing their identity and credential risks and selecting appropriate controls or arrangements to mitigate those risks using a standardized assurance level framework. The standard is supported by the TBS Guideline on Defining Authentication Requirements [Reference 61] and the TBS Guideline on Identity Assurance [Reference 62]. These guidelines are intended to be used in conjunction with CSE ITSB-31: User Authentication for IT Systems [Reference 18].
+
+    1. IDENTIFICATION AND AUTHENTICATION | ACCEPTANCE OF PIV CREDENTIALS FROM OTHER AGENCIES
+    Not applicable to the GC.
+
+    2. IDENTIFICATION AND AUTHENTICATION | ACCEPTANCE OF THIRD-PARTY CREDENTIALS
+    Not applicable to the GC.
+
+    3. IDENTIFICATION AND AUTHENTICATION | USE OF FICAM-APPROVED PRODUCTS
+    Not applicable to the GC.
+
+    4. IDENTIFICATION AND AUTHENTICATION | USE OF FICAM-ISSUED PROFILES
+    Not applicable to the GC.
+
+    5. IDENTIFICATION AND AUTHENTICATION | ACCEPTANCE OF PIV-I CREDENTIALS
+    Not applicable to the GC.
+
+    100. In accordance with the TBS Standard on Identity and Credential Assurance (including Appendix B and C) [Reference 60], the organization determines the required identity and credential assurance levels and selects appropriate controls using the standardized assurance levels specified in Appendix B, and implements the minimum requirements for establishing an identity assurance level specified in Appendix C.
+
+
 ### IA-9 SERVICE IDENTIFICATION AND AUTHENTICATION
+Control:
+
+A. The organization identifies and authenticates [Assignment: organization-defined information system services] using [Assignment: organization-defined security safeguards].
+
+    Supplemental Guidance: This control supports service-oriented architectures and other distributed architectural approaches requiring the identification and authentication of information system services. In such architectures, external services often appear dynamically. Therefore, information systems should be able to determine in a dynamic manner, if external providers and associated services are authentic. Safeguards implemented by organizational information systems to validate provider and service authenticity include, for example, information or code signing, provenance graphs, and/or electronic signatures indicating or including the sources of services.
+
+    Control Enhancements:
+
+    1. SERVICE IDENTIFICATION AND AUTHENTICATION | INFORMATION EXCHANGE
+    The organization ensures that service providers receive, validate, and transmit identification and authentication information.
+
+    2. SERVICE IDENTIFICATION AND AUTHENTICATION | TRANSMISSION OF DECISIONS
+    The organization ensures that identification and authentication decisions are transmitted between [Assignment: organization-defined services] and are consistent with organizational policies.
+
+    Enhancement Supplemental Guidance: For distributed architectures (e.g., service-oriented architectures), the decisions regarding the validation of identification and authentication claims may be made by services separate from the services acting on those decisions. In such situations, it is necessary to provide the identification and authentication decisions (as opposed to the actual identifiers and authenticators) to the services that need to act on those decisions. Related control: SC-8.
+
 ### IA-10 ADAPTIVE IDENTIFICATION AND AUTHENTICATION
+Control:
+
+A. The organization requires that individuals accessing the information system employ [Assignment: organization-defined supplemental authentication techniques or mechanisms] under specific [Assignment: organization-defined circumstances or situations].
+
+    Supplemental Guidance: Adversaries may compromise individual authentication mechanisms and subsequently attempt to impersonate legitimate users. This situation can potentially occur with any authentication mechanisms employed by organizations. To address this threat, organizations may employ specific techniques/mechanisms and establish protocols to assess suspicious behaviour (e.g., individuals accessing information that they do not typically access as part of their normal duties, roles, or responsibilities, accessing greater quantities of information than the individuals would routinely access, or attempting to access information from suspicious network addresses). In these situations when certain pre-established conditions or triggers occur, organizations can require selected individuals to provide additional authentication information. Another potential use for adaptive identification and authentication is to increase the strength of mechanism based on the number and/or types of records being accessed. Related controls: AU-6, SI-4.
+
+-> add details on per-request policies and Zero-trust, Identity aware gateway, etc...
+
+
 ### IA-11 RE-AUTHENTICATION
+Control:
+
+A. The organization requires users and devices to re-authenticate when [Assignment: organization-defined circumstances or situations requiring re-authentication].
+
+    Supplemental Guidance: In addition to the re-authentication requirements associated with session locks, organizations may require re-authentication of individuals and/or devices in other situations including, for example: (i) when authenticators change; (ii), when roles change; (iii) when security categories of information systems change; (iv), when the execution of privileged functions occurs; (v) after a fixed period of time; or (vi) periodically. Related control: AC-11.
+
+-> add details on per-request policies and Zero-trust, Identity aware gateway, etc...
+
 
 ## 3.8 FAMILY: INCIDENT RESPONSE
-### IR-1 INCIDENT RESPONSE POLICY AND PROCEDURES
-### IR-2 INCIDENT RESPONSE TRAINING
-### IR-3 INCIDENT RESPONSE TESTING AND EXERCISES
-### IR-4 INCIDENT HANDLING
-### IR-5 INCIDENT MONITORING
-### IR-6 INCIDENT REPORTING
-### IR-7 INCIDENT RESPONSE ASSISTANCE
-### IR-8 INCIDENT RESPONSE PLAN
-### IR-9 INFORMATION SPILLAGE RESPONSE
-### IR-10 INTEGRATED INFORMATION SECURITY ANALYSIS TEAM
+These controls would be implemented outside of this F5 solution.
 
 ## 3.9 FAMILY: MAINTENANCE
-### MA-1 SYSTEM MAINTENANCE POLICY AND PROCEDURES
-### MA-2 CONTROLLED MAINTENANCE
-### MA-3 MAINTENANCE TOOLS
-### MA-4 NON-LOCAL MAINTENANCE
-### MA-5 MAINTENANCE PERSONNEL
-### MA-6 TIMELY MAINTENANCE
+These controls would be implemented outside of this F5 solution.
 
 ## 3.10 FAMILY: MEDIA PROTECTION
-### MP-1 MEDIA PROTECTION POLICY AND PROCEDURES
-### MP-2 MEDIA ACCESS
-### MP-3 MEDIA MARKING
-### MP-4 MEDIA STORAGE
-### MP-5 MEDIA TRANSPORT
-### MP-6 MEDIA SANITIZATION
-### MP-7 MEDIA USE
-### MP-8 MEDIA DOWNGRADING
+These controls would be implemented outside of this F5 solution.
 
 ## 3.11 FAMILY: PHYSICAL AND ENVIRONMENTAL PROTECTION
-### PE-1 PHYSICAL AND ENVIRONMENTAL PROTECTION POLICY AND PROCEDURES
-### PE-2 PHYSICAL ACCESS AUTHORIZATIONS
-### PE-3 PHYSICAL ACCESS CONTROL
-### PE-4 ACCESS CONTROL FOR TRANSMISSION MEDIUM
-### PE-5 ACCESS CONTROL FOR OUTPUT DEVICES
-### PE-6 MONITORING PHYSICAL ACCESS
-### PE-7 VISITOR CONTROL
-### PE-8 ACCESS RECORDS
-### PE-9 POWER EQUIPMENT AND POWER CABLING
-### PE-10 EMERGENCY SHUTOFF
-### PE-11 EMERGENCY POWER
-### PE-12 EMERGENCY LIGHTING
-### PE-13 FIRE PROTECTION
-### PE-14 TEMPERATURE AND HUMIDITY CONTROLS
-### PE-15 WATER DAMAGE PROTECTION
-### PE-16 DELIVERY AND REMOVAL
-### PE-17 ALTERNATE WORK SITE
-### PE-18 LOCATION OF INFORMATION SYSTEM COMPONENTS
-### PE-19 INFORMATION LEAKAGE
-### PE-20 ASSET MONITORING AND TRACKING
+These controls would be implemented outside of this F5 solution.
 
 ## 3.12 FAMILY: PLANNING
-### PL-1 SECURITY PLANNING POLICY AND PROCEDURES
-### PL-2 SYSTEM SECURITY PLAN
-### PL-3 SYSTEM SECURITY PLAN UPDATE
-### PL-4 RULES OF BEHAVIOUR
-### PL-5 PRIVACY IMPACT ASSESSMENT
-### PL-6 SECURITY-RELATED ACTIVITY PLANNING
-### PL-7 SECURITY CONCEPTS OF OPERATION
-### PL-8 INFORMATION SECURITY ARCHITECTURE
-### PL-9 CENTRAL MANAGEMENT
+These controls would be implemented outside of this F5 solution.
 
 ## 3.13 FAMILY: PERSONNEL SECURITY
-### PS-1 PERSONNEL SECURITY POLICY AND PROCEDURES
-### PS-2 POSITION CATEGORIZATION
-### PS-3 PERSONNEL SCREENING
-### PS-4 PERSONNEL TERMINATION
-### PS-5 PERSONNEL TRANSFER
-### PS-6 ACCESS AGREEMENTS
-### PS-7 THIRD-PARTY PERSONNEL SECURITY
-### PS-8 PERSONNEL SANCTIONS
+These controls would be implemented outside of this F5 solution.
 
 ## 3.14 FAMILY: RISK ASSESSMENT
-### RA-1 RISK ASSESSMENT POLICY AND PROCEDURES
-### RA-2 SECURITY CATEGORIZATION
-### RA-3 RISK ASSESSMENT
-### RA-4 RISK ASSESSMENT UPDATE
-### RA-5 VULNERABILITY SCANNING
-### RA-6 TECHNICAL SURVEILLANCE COUNTERMEASURES SURVEY
+These controls would be implemented outside of this F5 solution.
 
 ## 3.15 FAMILY: SYSTEM AND SERVICES ACQUISITION
-### SA-1 SYSTEM AND SERVICES ACQUISITION POLICY AND PROCEDURES
-### SA-2 ALLOCATION OF RESOURCES
-### SA-3 SYSTEM DEVELOPMENT LIFECYCLE
-### SA-4 ACQUISITION PROCESS
-### SA-5 INFORMATION SYSTEM DOCUMENTATION
-### SA-6 SOFTWARE USAGE RESTRICTIONS
-### SA-7 USER-INSTALLED SOFTWARE
-### SA-8 SECURITY ENGINEERING PRINCIPLES
-### SA-9 EXTERNAL INFORMATION SYSTEM SERVICES
-### SA-10 DEVELOPER CONFIGURATION MANAGEMENT
-### SA-11 DEVELOPER SECURITY TESTING
-### SA-12 SUPPLY CHAIN PROTECTION
-### SA-13 TRUSTWORTHINESS
-### SA-14 CRITICALITY ANALYSIS
-### SA-15 DEVELOPMENT PROCESS, STANDARDS, AND TOOLS
-### SA-16 DEVELOPER PROVIDED TRAINING
-### SA-17 DEVELOPER SECURITY ARCHITECTURE AND DESIGN
-### SA-18 TAMPER RESISTANCE AND DETECTION
-### SA-19 COMPONENT AUTHENTICITY
-### SA-20 CUSTOMIZED DEVELOPMENT OF CRITICAL COMPONENTS
-### SA-21 DEVELOPER SCREENING
-### SA-22 UNSUPPORTED SYSTEM COMPONENTS
+These controls would be implemented outside of this F5 solution.
 
 ## 3.16 FAMILY: SYSTEM AND COMMUNICATIONS PROTECTION
-### SC-1 SYSTEM AND COMMUNICATIONS PROTECTION POLICY AND PROCEDURES
-### SC-2 APPLICATION PARTITIONING
-### SC-3 SECURITY FUNCTION ISOLATION
-### SC-4 INFORMATION IN SHARED RESOURCES
+Most of the controls (SC-nn) in this family would be implemented outside of this F5 solution. Important exceptions are noted here.
+
 ### SC-5 DENIAL OF SERVICE PROTECTION
-### SC-6 RESOURCE AVAILABILITY
+This F5 solution is hardened against certain Denial of Service attacks.
+
 ### SC-7 BOUNDARY PROTECTION
-This F5 solution provides the ability to control from which IP addresses the BIG-IP management network interface accepts connections (to the management web GUI or command line, of to the SNMP service).
+This F5 solution provides the ability to control from which IP addresses the management network interface accepts connections (to the management web GUI or command line, of to the SNMP service), as well as services accessible on self IP addresses.
 
     4. BOUNDARY PROTECTION | EXTERNAL TELECOMMUNICATIONS SERVICES
     The organization implements a managed interface for each external telecommunication service;
@@ -609,61 +650,26 @@ This F5 solution provides the ability to control from which IP addresses the BIG
     Enhancement Supplemental Guidance: This control enhancement addresses protection against unauthorized disclosure of information. Communication patterns include, for example, frequency, periods, amount, and predictability. Changes to communications patterns can reveal information having intelligence value especially when combined with other available information related to missions/business functions supported by organizational information systems. This control enhancement prevents the derivation of intelligence based on communications patterns and applies to both internal and external networks or links that may be visible to individuals who are not authorized users. Encrypting the links and transmitting in continuous, fixed/random patterns prevents the derivation of intelligence from the system communications patterns. Alternative physical safeguards include, for example, protected distribution systems. Related controls: SC-12, SC-13.
 
 ### SC-9 TRANSMISSION CONFIDENTIALITY
-### SC-10 NETWORK DISCONNECT
-This F5 solution automatically terminates the network connection associated with a communications session at the end of the session or logs out users when the defined time-period of inactivity has elapsed and different time-period values can be be specified for connections to the BIG-IP system's management services: web-based Configuration utility, SSH connections, Console and TMSH. For other individual infrastructure components such as the servers and firewalls, as well as for access to the appications services and contained within this infrastructure, this is accomplished by configuration of the "Inactivity Timeout" setting in the Access policy.
+Withdrawn: Incorporated into SC-8(4).
 
-### SC-11 TRUSTED PATH
-### SC-12 CRYPTOGRAPHIC KEY ESTABLISHMENT AND MANAGEMENT
-### SC-13 CRYPTOGRAPHIC PROTECTION
-### SC-14 PUBLIC ACCESS PROTECTIONS
-### SC-15 COLLABORATIVE COMPUTING DEVICES
-### SC-16 TRANSMISSION OF SECURITY ATTRIBUTES
+### SC-10 NETWORK DISCONNECT
+This F5 solution automatically terminates the network connection associated with a communications session at the end of the session or logs out users when the defined time-period of inactivity has elapsed and different time-period values can be be specified for connections to the system's management services: web-based Configuration utility, SSH connections, Console and TMSH. For other individual infrastructure components such as the servers and firewalls, as well as for access to the appications services and contained within this infrastructure, this is accomplished by configuration of the "Inactivity Timeout" setting in the Access policy.
+
 ### SC-17 PUBLIC KEY INFRASTRUCTURE CERTIFICATES
-### SC-18 MOBILE CODE
-### SC-19 VOICE OVER INTERNET PROTOCOL
-### SC-20 SECURE NAME / ADDRESS RESOLUTION SERVICE (AUTHORITATIVE SOURCE)
-### SC-21 SECURE NAME / ADDRESS RESOLUTION SERVICE (RECURSIVE OR CACHING RESOLVER)
-### SC-22 ARCHITECTURE AND PROVISIONING FOR NAME / ADDRESS RESOLUTION SERVICE
-### SC-23 SESSION AUTHENTICITY
-### SC-24 FAIL IN KNOWN STATE
-### SC-25 THIN NODES
-### SC-26 HONEYPOTS
-### SC-27 PLATFORM-INDEPENDENT APPLICATIONS
-### SC-28 PROTECTION OF INFORMATION AT REST
-### SC-29 HETEROGENEITY
-### SC-30 CONCEALMENT AND MISDIRECTION
-### SC-31 COVERT CHANNEL ANALYSIS
-### SC-32 INFORMATION SYSTEM PARTITIONING
-### SC-33 TRANSMISSION PREPARATION INTEGRITY
-### SC-34 NON-MODIFIABLE EXECUTABLE PROGRAMS
-### SC-35 HONEYCLIENTS
-### SC-36 DISTRIBUTED PROCESSING AND STORAGE
-### SC-37 OUT-OF-BAND CHANNELS
-### SC-38 OPERATIONS SECURITY
-### SC-39 PROCESS ISOLATION
-### SC-40 WIRELESS LINK PROTECTION
-### SC-41 PORT AND I/O DEVICE ACCESS
-### SC-42 SENSOR CAPABILITY AND DATA
-### SC-43 USAGE RESTRICTIONS
-### SC-44 DETONATION CHAMBERS
+This F5 solution does not manage TLS/SSL PKI certificates or cryptographic material as such. However, you can select the appropriate certificates and keys for single-ended and mutual authentication of connections to external authentication/directory services.
+
+
 ### SC-100 SOURCE AUTHENTICATION
-### SC-101 – UNCLASSIFIED TELECOMMUNICATIONS SYSTEMS IN SECURE FACILITIES
+Control:
+
+A. The information system allows a message recipient to verify the claimed source identifier in a message.
+    Supplemental Guidance: Source authentication prevents an unauthorized party from sending a message impersonating another party. This control applies to non-session based communications and can be implemented in protocols at any layer, from IP packets to electronic mail. Related controls: IA-1, IA-2, IA-3, IA-4, IA-5, SC-8, SC-13.
+
+    Control Enhancements:
+
+    1. Authentication of the claimed identifier in the message is cryptographically based.
+    2. The organization employs CMVP-certified cryptography for digital signature generation and verification. Refer to control SC-13.
+    3. The organization employs CSE-approved cryptography and protocols to implement the authentication. Refer to control SC-13.
 
 ## 3.17 FAMILY: SYSTEM AND INFORMATION INTEGRITY
-### SI-1 SYSTEM AND INFORMATION INTEGRITY POLICY AND PROCEDURES
-### SI-2 FLAW REMEDIATION
-### SI-3 MALICIOUS CODE PROTECTION
-### SI-4 INFORMATION SYSTEM MONITORING
-### SI-5 SECURITY ALERTS, ADVISORIES, AND DIRECTIVES
-### SI-6 SECURITY FUNCTIONAL VERIFICATION
-### SI-7 SOFTWARE, FIRMWARE, AND INFORMATION INTEGRITY
-### SI-8 SPAM PROTECTION
-### SI-9 INFORMATION INPUT RESTRICTIONS
-### SI-10 INFORMATION INPUT VALIDATION
-### SI-11 ERROR HANDLING
-### SI-12 INFORMATION OUTPUT HANDLING AND RETENTION
-### SI-13 PREDICTABLE FAILURE PREVENTION
-### SI-14 NON-PERSISTENCE
-### SI-15 INFORMATION OUTPUT FILTERING
-### SI-16 MEMORY PROTECTION
-### SI-17 FAIL-SAFE PROCEDURES
+These controls would be implemented outside of this F5 solution.
