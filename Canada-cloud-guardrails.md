@@ -1,5 +1,5 @@
 
-Minimum guardrails for Government of Canada's cloud operationalization framework
+*Minimum guardrails for Government of Canada's cloud operationalization framework
 https://canada-ca.github.io/cloud-guardrails/
 (https://github.com/canada-ca/cloud-guardrails)
     ID.	Guardrail
@@ -19,7 +19,7 @@ https://canada-ca.github.io/cloud-guardrails/
 
 How this F5 solution complies with these guardrails...
 
-01 Protect Root / Global Admins Account
+*01 Protect Root / Global Admins Account
 - Implement multi-factor authentication (MFA) mechanism for root/master account.
 - Implement a mechanism for enforcing access authorizations.
 - Configure appropriate alerts on root/master accounts to detect a potential compromise, in accordance with the GC Event Logging Guidance
@@ -38,7 +38,7 @@ How this F5 solution complies with these guardrails...
 How this F5 solution complies with these guardrails...
 
 
-07 Protection of Data-in-Transit
+*07 Protection of Data-in-Transit
 Objective: 
 - Protect data transiting networks through the use of appropriate encryption and network safeguards.
 Key Considerations
@@ -60,7 +60,7 @@ Key Considerations
     5. Refer to the guidance in Considerations for Cryptography in Commercial Cloud Services.
     6. Related security controls: SC‑8, SC‑8(1), SC‑12, SC‑13, SC‑17
 
-##How this F5 solution complies with guardrail 07:
+**How this F5 solution complies with guardrail 07:
 In accordance with ITPIN 2018-01, ITSG-22 and ITSG-38, TLS cryptography is implemented with CSE-approved cryptographic algorithms and protocols to encrypt and protect the confidentiality and integrity of data when data are in transit to and from this F5 solution.
 - [ ] add command with sample output showing the ciphers in use for the F5 virtual server, highlighting the fact that TLSv1.1 is not permitted?
 - [ ] add reference or list of CSE-approved cryptographic algorithms and protocols.
