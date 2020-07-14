@@ -10,7 +10,7 @@
             "class": "DbVariables",
             "ui.advisory.enabled": true,
             "ui.advisory.color": "green",
-            "ui.advisory.text": "/Common/hostname //UNCLASSIFIED//",
+            "ui.advisory.text": "//UNCLASSIFIED//",
             "config.allow.rfc3927": "enable",
             "ui.system.preferences.advancedselection":  "advanced",
             "ui.system.preferences.recordsperscreen": "100",
