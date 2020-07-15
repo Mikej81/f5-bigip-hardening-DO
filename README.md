@@ -28,7 +28,3 @@ You have a choice when it comes to filing issues:
 ## Contributing
 
 Individuals or business entities who contribute to this project must have completed and submitted the F5 Contributor License Agreement.
-
-## Authors
-
-* **Michael Coleman** - *v2* - [Mikej81](https://github.com/Mikej81)
