@@ -6,6 +6,11 @@
     "Common": {
         "class": "Tenant",
         "hostname": "${local_host}.example.com",
+        "myLicense": {
+            "class": "License",
+            "licenseType": "regkey",
+            "regKey": "${bigip_regKey}"
+        },
         "dbvars": {
         	"class": "DbVariables",
         	"ui.advisory.enabled": true,
