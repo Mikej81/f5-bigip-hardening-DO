@@ -6,11 +6,11 @@
 
 For the documentation on Declarative Onboarding, including download, installation, and usage instructions, see the Declarative Onboarding [User Guide](https://clouddocs.f5.com/products/extensions/f5-declarative-onboarding/latest).
 
-## Unclass STIG Example
+## [Department of Defense Unclassified Security Technical Implementation Guide (STIG) Example](https://public.cyber.mil/stigs/downloads/)
 
-* [Unclass STIG Baseline](https://github.com/Mikej81/f5-securecloud-DO/blob/master/source/U_STIG_Baseline.json) This covers a good portion of required configuration items for STIGS / SRGS tied to DODIN APL.
+* [Unclass STIG Baseline](https://github.com/Mikej81/f5-securecloud-DO/blob/master/source/U_STIG_Baseline.json) This covers a good portion of required configuration items for STIGS / Secuity Requirements Guides (SRGs) tied to the Approved Product List.
 
-## NIST 800-53 Example
+## [NIST 800-53 Example](https://nvd.nist.gov/800-53)
 
 * [NIST 800-53 Baseline](https://github.com/Mikej81/f5-securecloud-DO/blob/master/source/NIST_800_53_Baseline.json)  This covers the currently supported items in DO for 800-53.  Remote Auth is supported but not included currently.  The goal is to have parity and take over for the NIST 800-53 iApp.  [Reference Deployment Guide](https://www.f5.com/services/resources/deployment-guides/nist-sp-800-53r4-compliance)
 
