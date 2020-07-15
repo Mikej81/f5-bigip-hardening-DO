@@ -18,6 +18,8 @@ For the documentation on Declarative Onboarding, including download, installatio
 
 * [Terraform PAYG Baseline](https://github.com/Mikej81/f5-securecloud-DO/blob/master/dist/terraform/latest/payg_cluster.json) This covers the current supported items in DO for STIG and is built around use within IaC tools within a template.
 
+* [Terraform BYOL Baseline](https://github.com/Mikej81/f5-securecloud-DO/blob/master/dist/terraform/latest/byol_cluster.json)
+
 ## Filing Issues
 
 If you find an issue, we would love to hear about it.
