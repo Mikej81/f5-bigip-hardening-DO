@@ -1,0 +1,8 @@
+*.log
+.eslintcache
+*.tgz
+.env
+.env.test
+.cache
+.vscode-test
+.gitattributes

@@ -1,24 +1,41 @@
-# F5 Secure Cloud Declarative Onboarding
+# F5 BIG-IP Hardening Declarative Onboarding Examples
 
-[F5 Declarative onboarding](https://github.com/F5Networks/f5-declarative-onboarding) uses a declarative model to initially configure a BIG-IP device with all of the required settings to get up and running. This includes system settings such as licensing and provisioning, network settings such as VLANs and Self IPs, and clustering settings if you are using more than one BIG-IP system.
+* [Introduction](#introduction)
+* [Declarative Onboarding](#F5-Declarative-Onboarding)
+    * [Declarative Onboarding Documentation](#Declarative-Onboarding-Documentation)
+* [Department of Defense Unclassified Security Technical Implementation Guide (STIG) Example](#Department-of-Defense-Unclassified-Security-Technical-Implementation-Guide-(STIG)-Example)
+* [NIST 800-53 Example](#NIST-800-53-Example)
+* [Terraform Template Example](#Terraform-Template-Example)
+    * [Terraform Usage](#Terraform-Usage)
+* [Filing Issues](#Filing-Issues)
 
-## Documentation
+## Introduction
+
+[F5 Declarative Onboarding](https://github.com/F5Networks/f5-declarative-onboarding) (**DO**) uses a declarative model to initially configure a BIG-IP device with all of the required settings to get up and running. This includes system settings such as licensing and provisioning, network settings such as VLANs and Self IPs, and clustering settings if you are using more than one BIG-IP system.
+
+### Declararive Onboarding Documentation
 
 For the documentation on Declarative Onboarding, including download, installation, and usage instructions, see the Declarative Onboarding [User Guide](https://clouddocs.f5.com/products/extensions/f5-declarative-onboarding/latest).
 
 ## [Department of Defense Unclassified Security Technical Implementation Guide (STIG) Example](https://public.cyber.mil/stigs/downloads/)
 
-* [Unclass STIG Baseline](https://github.com/Mikej81/f5-securecloud-DO/blob/master/source/U_STIG_Baseline.json) This covers a good portion of required configuration items for STIGS / Secuity Requirements Guides (SRGs) tied to the Approved Product List.
+* [Unclassified STIG Baseline](https://github.com/Mikej81/f5-securecloud-DO/blob/master/dist/general/U_STIG_Baseline.json) This covers a good portion of required configuration items for STIGS / Secuity Requirements Guides (SRGs) tied to the Approved Product List.
 
 ## [NIST 800-53 Example](https://nvd.nist.gov/800-53)
 
-* [NIST 800-53 Baseline](https://github.com/Mikej81/f5-securecloud-DO/blob/master/source/NIST_800_53_Baseline.json)  This covers the currently supported items in DO for 800-53.  Remote Auth is supported but not included currently.  The goal is to have parity and take over for the NIST 800-53 iApp.  [Reference Deployment Guide](https://www.f5.com/services/resources/deployment-guides/nist-sp-800-53r4-compliance)
+* [NIST 800-53 Baseline](https://github.com/Mikej81/f5-securecloud-DO/blob/master/dist/general/NIST_800_53_Baseline.json)  This covers the currently supported items in DO for 800-53.  Remote Auth is supported but not included currently.  The goal is to have parity and take over for the NIST 800-53 iApp.  [Reference Deployment Guide](https://www.f5.com/services/resources/deployment-guides/nist-sp-800-53r4-compliance)
 
 ## Terraform Template Example
 
-* [Terraform PAYG Baseline](https://github.com/Mikej81/f5-securecloud-DO/blob/master/dist/terraform/latest/payg_cluster.json) This covers the current supported items in DO for STIG and is built around use within IaC tools within a template.
+These example templates cover the current supported items in **DO** for STIGs and they are built around use within terraform as [templates_files](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file).
+
+* [Terraform PAYG Baseline](https://github.com/Mikej81/f5-securecloud-DO/blob/master/dist/terraform/latest/payg_cluster.json)
 
 * [Terraform BYOL Baseline](https://github.com/Mikej81/f5-securecloud-DO/blob/master/dist/terraform/latest/byol_cluster.json)
+
+### Terraform Usage
+
+![TF Example](/img/tf_example.png)
 
 ## Filing Issues
 
