@@ -1,19 +1,28 @@
-# F5 BIG-IP Hardening Declarative Onboarding Examples
+# BIG-IP Secure Cloud Architecture Hardening Declarative Onboarding Examples
 
 * [Introduction](#introduction)
-* [Declarative Onboarding](#F5-Declarative-Onboarding)
+  * [What is Secure Cloud Architecture?](#What-is-Secure-Cloud-Architecture)
+  * [What is Declarative Onboarding?](#What-is-Declarative-Onboarding)
     * [Declarative Onboarding Documentation](#Declarative-Onboarding-Documentation)
 * [Department of Defense Unclassified Security Technical Implementation Guide (STIG) Example](#Department-of-Defense-Unclassified-Security-Technical-Implementation-Guide-(STIG)-Example)
 * [NIST 800-53 Example](#NIST-800-53-Example)
 * [Terraform Template Example](#Terraform-Template-Example)
-    * [Terraform Usage](#Terraform-Usage)
+  * [Terraform Usage](#Terraform-Usage)
 * [Filing Issues](#Filing-Issues)
 
 ## Introduction
 
+### What is Secure Cloud Architecture
+
+Secure Cloud Architecture is valdiated pattern from Secure / Cloud Architects within F5 that brings together robustness, depth of security, and visibility to the modern datacenter with the agility and service-based model of the public cloud.  
+
+It’s built on a foundation of advanced app services that enable the automatable security, performance, and visibility of the entire data path to the application.
+
+### What is Declarative Onboarding
+
 [F5 Declarative Onboarding](https://github.com/F5Networks/f5-declarative-onboarding) (**DO**) uses a declarative model to initially configure a BIG-IP device with all of the required settings to get up and running. This includes system settings such as licensing and provisioning, network settings such as VLANs and Self IPs, and clustering settings if you are using more than one BIG-IP system.
 
-### Declararive Onboarding Documentation
+### Declarative Onboarding Documentation
 
 For the documentation on Declarative Onboarding, including download, installation, and usage instructions, see the Declarative Onboarding [User Guide](https://clouddocs.f5.com/products/extensions/f5-declarative-onboarding/latest).
 
