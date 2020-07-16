@@ -28,7 +28,7 @@ For the documentation on Declarative Onboarding, including download, installatio
 
 ## [Department of Defense Unclassified Security Technical Implementation Guide (STIG) Example](https://public.cyber.mil/stigs/downloads/)
 
-The [Unclassified STIG Baseline](https://github.com/Mikej81/f5-securecloud-DO/blob/master/dist/general/U_STIG_Baseline.json) covers a good portion of required configuration items for STIGS / Secuity Requirements Guides (SRGs) tied to the Approved Product List.
+The [Unclassified STIG Baseline](https://github.com/Mikej81/f5-securecloud-DO/blob/master/dist/general/latest/U_STIG_Baseline.json) covers a good portion of required configuration items for STIGS / Secuity Requirements Guides (SRGs) tied to the Approved Product List.
 
 This template has a heavy focus on port and service lockdown, and cipher security.
 
@@ -55,7 +55,7 @@ This template has a heavy focus on port and service lockdown, and cipher securit
 
 ## [NIST 800-53 Example](https://nvd.nist.gov/800-53)
 
-The [NIST 800-53 Baseline](https://github.com/Mikej81/f5-securecloud-DO/blob/master/dist/general/NIST_800_53_Baseline.json)  covers the currently supported items in DO for 800-53.  The goal is to have parity and take over for the NIST 800-53 iApp.  [Reference Deployment Guide](https://www.f5.com/services/resources/deployment-guides/nist-sp-800-53r4-compliance)
+The [NIST 800-53 Baseline](https://github.com/Mikej81/f5-securecloud-DO/blob/master/dist/general/latest/NIST_800_53_Baseline.json)  covers the currently supported items in DO for 800-53.  The goal is to have parity and take over for the NIST 800-53 iApp.  [Reference Deployment Guide](https://www.f5.com/services/resources/deployment-guides/nist-sp-800-53r4-compliance)
 
 This template has a heavier focus on security controls and remote authentication security.
 
