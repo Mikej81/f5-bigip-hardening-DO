@@ -44,7 +44,31 @@ These example templates cover the current supported items in **DO** for STIGs an
 
 ### Terraform Usage
 
-![TF Example](/img/tf_example.png)
+```hcl
+data http template {
+  url = "https://raw.githubusercontent.com/Mikej81/f5-securecloud-DO/master/dist/terraform/latest/payg_cluster.json"
+}
+
+data template_file vm01_do_json {
+  template = "${data.http.template.body}"
+  vars = {
+    host1           = var.host1_name
+    host2           = var.host2_name
+    local_host      = var.host1_name
+    local_selfip    = var.f5vm01ext
+    remote_host     = var.host2_name
+    remote_selfip   = var.f5vm02ext
+    externalGateway = local.ext_gw
+    mgmtGateway     = local.mgmt_gw
+    dns_server      = var.dns_server
+    ntp_server      = var.ntp_server
+    timezone        = var.timezone
+    admin_user      = var.adminUserName
+    admin_password  = var.adminPassword
+    license         = var.licenses["license1"] != "" ? var.licenses["license1"] : ""
+  }
+}
+```
 
 ## Filing Issues
 
