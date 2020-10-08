@@ -8,7 +8,7 @@
         "hostname": "${local_host}.example.com",
         "myLicense": {
             "class": "License",
-            "licenseType": "regkey",
+            "licenseType": "regKey",
             "regKey": "${bigip_regKey}"
         },
         "dbvars": {
