@@ -97,12 +97,36 @@
                 }
             ]
         },
+        "internal": {
+            "class": "VLAN",
+            "tag": 4095,
+            "mtu": 1500,
+            "interfaces": [
+                {
+                    "name": "1.2",
+                    "tagged": false
+                }
+            ]
+        },
         "external-self": {
             "class": "SelfIp",
-            "address": "${local_selfip}/24",
+            "address": "${external_selfip}/24",
             "vlan": "external",
             "allowService": "default",
             "trafficGroup": "traffic-group-local-only"
+        },
+        "internal-self": {
+            "class": "SelfIp",
+            "address": "${internal_selfip}/24",
+            "vlan": "internal",
+            "allowService": "default",
+            "trafficGroup": "traffic-group-local-only"
+        },
+        "vdms": {
+            "class": "Route",
+            "gw": "${internalGateway}",
+            "network": "default",
+            "mtu": 1500
         },
         "configsync": {
             "class": "ConfigSync",
