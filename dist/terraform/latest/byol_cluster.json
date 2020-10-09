@@ -98,7 +98,7 @@
         },
         "internal": {
             "class": "VLAN",
-            "tag": 4095,
+            "tag": 4093,
             "mtu": 1500,
             "interfaces": [
                 {
