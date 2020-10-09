@@ -122,9 +122,21 @@
             "allowService": "default",
             "trafficGroup": "traffic-group-local-only"
         },
+        "default": {
+            "class": "Route",
+            "gw": "${externalGateway}",
+            "network": "default",
+            "mtu": 1500
+        },
         "vdms": {
             "class": "Route",
             "gw": "${internalGateway}",
+            "network": "${vdmsSubnet}",
+            "mtu": 1500
+        },
+        "managementRoute": {
+            "class": "ManagementRoute",
+            "gw": "192.168.0.1",
             "network": "default",
             "mtu": 1500
         },
