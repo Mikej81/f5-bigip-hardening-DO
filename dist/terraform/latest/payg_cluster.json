@@ -128,12 +128,6 @@
             "network": "${vdmsSubnet}",
             "mtu": 1500
         },
-        "managementRoute": {
-            "class": "ManagementRoute",
-            "gw": "${mgmtGateway}",
-            "network": "default",
-            "mtu": 1500
-        },
         "configsync": {
             "class": "ConfigSync",
             "configsyncIp": "/Common/external-self/address"
