@@ -122,6 +122,12 @@
             "allowService": "default",
             "trafficGroup": "traffic-group-local-only"
         },
+        "default": {
+            "class": "Route",
+            "gw": "${externalGateway}",
+            "network": "default",
+            "mtu": 1500
+        },
         "vdms": {
             "class": "Route",
             "gw": "${internalGateway}",
