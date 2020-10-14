@@ -34,6 +34,12 @@
             "big3d.minimum.tls.version": "TLSV1.2",
             "liveinstall.checksig": "enable"
         },
+        "RemoteSyslog": {
+            "class": "SyslogRemoteServer",
+            "host": "${log_destination}",
+            "localIp": "${log_localip}",
+            "remotePort": 514
+          },
         "system":{
             "class": "System",
             "autoCheck": false,
@@ -130,7 +136,7 @@
             "allowService": "default",
             "trafficGroup": "traffic-group-local-only"
         },
-        "default": {
+        "internet": {
             "class": "Route",
             "gw": "${externalGateway}",
             "network": "default",
