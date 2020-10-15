@@ -115,14 +115,14 @@
         },
         "external-self": {
             "class": "SelfIp",
-            "address": "${external_selfip}/24",
+            "address": "${external_selfip}",
             "vlan": "external",
             "allowService": "default",
             "trafficGroup": "traffic-group-local-only"
         },
         "internal-self": {
             "class": "SelfIp",
-            "address": "${internal_selfip}/24",
+            "address": "${internal_selfip}",
             "vlan": "internal",
             "allowService": "default",
             "trafficGroup": "traffic-group-local-only"
