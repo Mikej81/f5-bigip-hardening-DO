@@ -134,6 +134,12 @@
             "network": "${vdmsSubnet}",
             "mtu": 1500
         },
+        "application": {
+            "class": "Route",
+            "gw": "${internalGateway}",
+            "network": "${appSubnet}",
+            "mtu": 1500
+        },
         "configsync": {
             "class": "ConfigSync",
             "configsyncIp": "/Common/external-self/address"
