@@ -128,16 +128,10 @@
             "network": "default",
             "mtu": 1500
         },
-        "vdms": {
+        "vdss": {
             "class": "Route",
             "gw": "${internalGateway}",
-            "network": "${vdmsSubnet}",
-            "mtu": 1500
-        },
-        "application": {
-            "class": "Route",
-            "gw": "${internalGateway}",
-            "network": "${appSubnet}",
+            "network": "${vnetSubnet}",
             "mtu": 1500
         },
         "configsync": {
