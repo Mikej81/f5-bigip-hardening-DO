@@ -18,7 +18,8 @@
             "dns.cache": "enable",
             "config.allow.rfc3927": "enable",
             "big3d.minimum.tls.version": "TLSV1.2",
-            "liveinstall.checksig": "enable"
+            "liveinstall.checksig": "enable",
+            "connection.vlankeyed": "disable"
         },
         "RemoteSyslog": {
             "class": "SyslogRemoteServer",
