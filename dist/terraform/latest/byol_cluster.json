@@ -9,7 +9,7 @@
         "myLicense": {
             "class": "License",
             "licenseType": "regKey",
-            "regKey": "${bigip_regKey}"
+            "regKey": "${license}"
         },
         "dbvars": {
         	"class": "DbVariables",
