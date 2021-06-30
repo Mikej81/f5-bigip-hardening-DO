@@ -1,0 +1,137 @@
+{
+    "schemaVersion": "1.9.0",
+    "class": "Device",
+    "async": true,
+    "label": "Basic onboarding",
+    "Common": {
+        "class": "Tenant",
+        "hostname": "${local_host}.example.com",
+        "myLicense": {
+            "class": "License",
+            "licenseType": "regKey",
+            "regKey": "${license}"
+        },
+        "dbvars": {
+        	"class": "DbVariables",
+        	"ui.advisory.enabled": true,
+        	"ui.advisory.color": "green",
+            "ui.advisory.text": "//UNCLASSIFIED//",
+            "ui.system.preferences.advancedselection":  "advanced",
+            "ui.system.preferences.recordsperscreen": "100",
+            "ui.system.preferences.startscreen": "network_map",
+            "ui.users.redirectsuperuserstoauthsummary": "true",
+            "dns.cache": "enable",
+            "config.allow.rfc3927": "enable",
+            "big3d.minimum.tls.version": "TLSV1.2",
+            "liveinstall.checksig": "enable"
+        },
+        "RemoteSyslog": {
+            "class": "SyslogRemoteServer",
+            "host": "${log_destination}",
+            "localIp": "${log_localip}",
+            "remotePort": 514
+          },
+        "system":{
+            "class": "System",
+            "autoCheck": false,
+            "autoPhonehome": false,
+            "cliInactivityTimeout": 900,
+            "consoleInactivityTimeout": 900,
+            "guiAuditLog": true,
+            "mcpAuditLog": "enable",
+            "tmshAuditLog": true
+        },
+        "httpd": {
+            "class": "HTTPD",
+            "maxClients": 10,
+            "authPamIdleTimeout": 900,
+            "sslCiphersuite": ["ECDHE-ECDSA-AES256-GCM-SHA384", "ECDHE-ECDSA-AES256-SHA384", "ECDHE-ECDSA-AES256-SHA","ECDH-ECDSA-AES256-GCM-SHA384", "ECDH-ECDSA-AES256-SHA384", "ECDH-ECDSA-AES256-SHA", "AES256-GCM-SHA384", "AES256-SHA256", "AES256-SHA", "CAMELLIA256-SHA", "ECDHE-RSA-AES128-GCM-SHA256", "ECDHE-ECDSA-AES128-GCM-SHA256", "ECDHE-ECDSA-AES128-SHA256", "ECDHE-RSA-AES128-SHA", "ECDHE-ECDSA-AES128-SHA", "ECDH-ECDSA-AES128-GCM-SHA256", "ECDH-ECDSA-AES128-SHA256", "ECDH-ECDSA-AES128-SHA", "AES128-GCM-SHA256", "AES128-SHA256", "AES128-SHA", "SEED-SHA", "CAMELLIA128-SHA"],
+            "sslProtocol": "all -SSLv2 -SSLv3 -TLSv1"
+        },
+        "sshd": {
+            "class": "SSHD",
+            "banner": "You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. By using this IS (which includes any device attached to this IS), you consent to the following conditions: The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations. At any time, the USG may inspect and seize data stored on this IS. Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG authorized purpose. This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy. Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.",
+            "inactivityTimeout": 900,
+            "ciphers": [
+                "aes128-ctr",
+                "aes192-ctr",
+                "aes256-ctr"
+            ],
+            "loginGraceTime": 60,
+            "MACS": [
+                "hmac-sha1",
+                "hmac-ripemd160"
+            ],
+            "maxAuthTries": 3,
+            "maxStartups": "5",
+            "protocol": 2
+        },
+        "myDns": {
+            "class": "DNS",
+            "nameServers": [
+                "${dns_server}",
+                "2001:4860:4860::8844"
+            ],
+            "search": [
+                "f5.com"
+            ]
+        },
+        "myNtp": {
+            "class": "NTP",
+            "servers": [
+                "${ntp_server}",
+                "0.pool.ntp.org",
+                "1.pool.ntp.org"
+            ],
+            "timezone": "${timezone}"
+        },
+        "myProvisioning": {
+            "class": "Provision",
+            "ltm": "nominal",
+            "asm": "nominal",
+            "afm": "nominal"
+        },
+        "external": {
+            "class": "VLAN",
+            "tag": 4094,
+            "mtu": 1500,
+            "interfaces": [
+                {
+                    "name": "1.1",
+                    "tagged": false
+                }
+            ]
+        },
+        "internal": {
+            "class": "VLAN",
+            "tag": 4093,
+            "mtu": 1500,
+            "interfaces": [
+                {
+                    "name": "1.2",
+                    "tagged": false
+                }
+            ]
+        },
+        "external-self": {
+            "class": "SelfIp",
+            "address": "${external_selfip}",
+            "vlan": "external",
+            "allowService": "default",
+            "trafficGroup": "traffic-group-local-only"
+        },
+        "internal-self": {
+            "class": "SelfIp",
+            "address": "${internal_selfip}",
+            "vlan": "internal",
+            "allowService": "default",
+            "trafficGroup": "traffic-group-local-only"
+        },
+        "internet": {
+            "class": "Route",
+            "gw": "${externalGateway}",
+            "network": "default",
+            "mtu": 1500
+        }
+    }
+}
