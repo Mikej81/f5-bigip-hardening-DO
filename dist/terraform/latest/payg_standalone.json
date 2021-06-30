@@ -58,8 +58,8 @@
         "myDns": {
             "class": "DNS",
             "nameServers": [
-                "${dns_server}",
-                "2001:4860:4860::8844"
+                "8.8.8.8",
+                "8.8.4.4"
             ],
             "search": [
                 "f5.com"
@@ -68,7 +68,6 @@
         "myNtp": {
             "class": "NTP",
             "servers": [
-                "${ntp_server}",
                 "0.pool.ntp.org",
                 "1.pool.ntp.org"
             ],
@@ -79,48 +78,6 @@
             "ltm": "nominal",
             "asm": "nominal",
             "afm": "nominal"
-        },
-        "external": {
-            "class": "VLAN",
-            "tag": 4094,
-            "mtu": 1500,
-            "interfaces": [
-                {
-                    "name": "1.1",
-                    "tagged": false
-                }
-            ]
-        },
-        "internal": {
-            "class": "VLAN",
-            "tag": 4093,
-            "mtu": 1500,
-            "interfaces": [
-                {
-                    "name": "1.2",
-                    "tagged": false
-                }
-            ]
-        },
-        "external-self": {
-            "class": "SelfIp",
-            "address": "${external_selfip}",
-            "vlan": "external",
-            "allowService": "default",
-            "trafficGroup": "traffic-group-local-only"
-        },
-        "internal-self": {
-            "class": "SelfIp",
-            "address": "${internal_selfip}",
-            "vlan": "internal",
-            "allowService": "default",
-            "trafficGroup": "traffic-group-local-only"
-        },
-        "internet": {
-            "class": "Route",
-            "gw": "${externalGateway}",
-            "network": "default",
-            "mtu": 1500
         }
     }
 }
