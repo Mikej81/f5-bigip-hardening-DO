@@ -133,7 +133,7 @@
         "applications": {
             "class": "Route",
             "gw": "${internalGateway}",
-            "network": "vnetSubnet",
+            "network": "${vnetSubnet}",
             "mtu": 1500
         }
     }
