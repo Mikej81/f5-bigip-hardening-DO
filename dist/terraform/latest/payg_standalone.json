@@ -20,6 +20,12 @@
             "big3d.minimum.tls.version": "TLSV1.2",
             "liveinstall.checksig": "enable"
         },
+        "RemoteSyslog": {
+            "class": "SyslogRemoteServer",
+            "host": "${log_destination}",
+            "localIp": "${log_localip}",
+            "remotePort": 514
+          },
         "system":{
             "class": "System",
             "autoCheck": false,
@@ -58,6 +64,7 @@
         "myDns": {
             "class": "DNS",
             "nameServers": [
+                "${dns_server}",
                 "8.8.8.8",
                 "8.8.4.4"
             ],
@@ -68,6 +75,7 @@
         "myNtp": {
             "class": "NTP",
             "servers": [
+                "${ntp_server}",
                 "0.pool.ntp.org",
                 "1.pool.ntp.org"
             ],
@@ -78,6 +86,48 @@
             "ltm": "nominal",
             "asm": "nominal",
             "afm": "nominal"
+        },
+        "external": {
+            "class": "VLAN",
+            "tag": 4094,
+            "mtu": 1500,
+            "interfaces": [
+                {
+                    "name": "1.1",
+                    "tagged": false
+                }
+            ]
+        },
+        "internal": {
+            "class": "VLAN",
+            "tag": 4093,
+            "mtu": 1500,
+            "interfaces": [
+                {
+                    "name": "1.2",
+                    "tagged": false
+                }
+            ]
+        },
+        "external-self": {
+            "class": "SelfIp",
+            "address": "${external_selfip}",
+            "vlan": "external",
+            "allowService": "default",
+            "trafficGroup": "traffic-group-local-only"
+        },
+        "internal-self": {
+            "class": "SelfIp",
+            "address": "${internal_selfip}",
+            "vlan": "internal",
+            "allowService": "default",
+            "trafficGroup": "traffic-group-local-only"
+        },
+        "internet": {
+            "class": "Route",
+            "gw": "${externalGateway}",
+            "network": "default",
+            "mtu": 1500
         }
     }
 }
