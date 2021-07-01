@@ -85,7 +85,8 @@
             "class": "Provision",
             "ltm": "nominal",
             "asm": "nominal",
-            "afm": "nominal"
+            "afm": "nominal",
+            "apm": "nominal"
         },
         "external": {
             "class": "VLAN",
