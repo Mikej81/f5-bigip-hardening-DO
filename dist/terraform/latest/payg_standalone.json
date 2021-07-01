@@ -126,8 +126,14 @@
         },
         "default": {
             "class": "Route",
-            "gw": "${externalGateway}",
+            "gw": "${mgmtGateway}",
             "network": "default",
+            "mtu": 1500
+        },
+        "applications": {
+            "class": "Route",
+            "gw": "${internalGateway}",
+            "network": "vnetSubnet",
             "mtu": 1500
         }
     }
