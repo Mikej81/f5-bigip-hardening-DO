@@ -124,12 +124,6 @@
             "allowService": "default",
             "trafficGroup": "traffic-group-local-only"
         },
-        "default": {
-            "class": "Route",
-            "gw": "${mgmtGateway}",
-            "network": "default",
-            "mtu": 1500
-        },
         "applications": {
             "class": "Route",
             "gw": "${internalGateway}",
