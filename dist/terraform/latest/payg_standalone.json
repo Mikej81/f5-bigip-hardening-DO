@@ -7,11 +7,11 @@
         "class": "Tenant",
         "hostname": "${local_host}.example.com",
         "dbvars": {
-        	"class": "DbVariables",
-        	"ui.advisory.enabled": true,
-        	"ui.advisory.color": "green",
+            "class": "DbVariables",
+            "ui.advisory.enabled": true,
+            "ui.advisory.color": "green",
             "ui.advisory.text": "//UNCLASSIFIED//",
-            "ui.system.preferences.advancedselection":  "advanced",
+            "ui.system.preferences.advancedselection": "advanced",
             "ui.system.preferences.recordsperscreen": "100",
             "ui.system.preferences.startscreen": "network_map",
             "ui.users.redirectsuperuserstoauthsummary": "true",
@@ -24,9 +24,9 @@
             "class": "SyslogRemoteServer",
             "host": "${log_destination}",
             "localIp": "${log_localip}",
-            "remotePort": 514
-          },
-        "system":{
+            "remotePort": 1514
+        },
+        "system": {
             "class": "System",
             "autoCheck": false,
             "autoPhonehome": false,
@@ -40,7 +40,31 @@
             "class": "HTTPD",
             "maxClients": 10,
             "authPamIdleTimeout": 900,
-            "sslCiphersuite": ["ECDHE-ECDSA-AES256-GCM-SHA384", "ECDHE-ECDSA-AES256-SHA384", "ECDHE-ECDSA-AES256-SHA","ECDH-ECDSA-AES256-GCM-SHA384", "ECDH-ECDSA-AES256-SHA384", "ECDH-ECDSA-AES256-SHA", "AES256-GCM-SHA384", "AES256-SHA256", "AES256-SHA", "CAMELLIA256-SHA", "ECDHE-RSA-AES128-GCM-SHA256", "ECDHE-ECDSA-AES128-GCM-SHA256", "ECDHE-ECDSA-AES128-SHA256", "ECDHE-RSA-AES128-SHA", "ECDHE-ECDSA-AES128-SHA", "ECDH-ECDSA-AES128-GCM-SHA256", "ECDH-ECDSA-AES128-SHA256", "ECDH-ECDSA-AES128-SHA", "AES128-GCM-SHA256", "AES128-SHA256", "AES128-SHA", "SEED-SHA", "CAMELLIA128-SHA"],
+            "sslCiphersuite": [
+                "ECDHE-ECDSA-AES256-GCM-SHA384",
+                "ECDHE-ECDSA-AES256-SHA384",
+                "ECDHE-ECDSA-AES256-SHA",
+                "ECDH-ECDSA-AES256-GCM-SHA384",
+                "ECDH-ECDSA-AES256-SHA384",
+                "ECDH-ECDSA-AES256-SHA",
+                "AES256-GCM-SHA384",
+                "AES256-SHA256",
+                "AES256-SHA",
+                "CAMELLIA256-SHA",
+                "ECDHE-RSA-AES128-GCM-SHA256",
+                "ECDHE-ECDSA-AES128-GCM-SHA256",
+                "ECDHE-ECDSA-AES128-SHA256",
+                "ECDHE-RSA-AES128-SHA",
+                "ECDHE-ECDSA-AES128-SHA",
+                "ECDH-ECDSA-AES128-GCM-SHA256",
+                "ECDH-ECDSA-AES128-SHA256",
+                "ECDH-ECDSA-AES128-SHA",
+                "AES128-GCM-SHA256",
+                "AES128-SHA256",
+                "AES128-SHA",
+                "SEED-SHA",
+                "CAMELLIA128-SHA"
+            ],
             "sslProtocol": "all -SSLv2 -SSLv3 -TLSv1"
         },
         "sshd": {
